@@ -347,44 +347,55 @@ document.querySelectorAll(".painel").forEach(p => {
 });
 
 // ---------- caixa 3D que gira com o dedo (Milky e Salted Caramel) ----------
-// faces em img/giro/<sabor>-{frente,costas,lado-logo,lado-texto}.webp — frente/costas 400×620, laterais 190×620
-const GIRO_PROP = {w:400, d:190, h:620};
+// faces em img/giro/<sabor>-{frente,costas,lado-logo,lado-texto}.webp — frente/costas 400×620, laterais 190×620.
+// A embalagem é "de bico": frente e costas são retas embaixo e inclinam pra dentro em cima (até o topo),
+// e as laterais têm o bico em triângulo. hs = altura (na foto) em que começa a inclinação.
+const GIRO_PROP = {w:400, d:190, h:620, hs:300};
 function giroHTML(p){
   const f = n => `img/giro/${p.giro}-${n}.webp`;
   return `<div class="giro" role="img" aria-label="${esc(p.nome)}: segure e arraste pra girar a embalagem">
-    <div class="giro-cena"><div class="giro-caixa">
-      <img class="giro-face frente" src="${f("frente")}" alt="" draggable="false">
-      <img class="giro-face dir" src="${f("lado-logo")}" alt="" draggable="false">
-      <img class="giro-face costas" src="${f("costas")}" alt="" draggable="false">
-      <img class="giro-face esq" src="${f("lado-texto")}" alt="" draggable="false">
+    <div class="giro-cena"><div class="giro-caixa" style="--img-frente:url(${f("frente")});--img-costas:url(${f("costas")})">
+      <div class="giro-face plano frente baixo"></div>
+      <div class="giro-face plano frente cima"></div>
+      <div class="giro-face plano costas baixo"></div>
+      <div class="giro-face plano costas cima"></div>
+      <img class="giro-face lado dir" src="${f("lado-logo")}" alt="" draggable="false">
+      <img class="giro-face lado esq" src="${f("lado-texto")}" alt="" draggable="false">
     </div></div>
     <span class="giro-dica">↔ Segure e arraste pra girar</span>
   </div>`;
 }
 function montaGiro(el){
-  const caixa = el.querySelector(".giro-caixa"), faces = [...el.querySelectorAll(".giro-face")];
-  const normais = [0, 90, 180, 270]; // frente, direita, costas, esquerda
+  const caixa = el.querySelector(".giro-caixa");
+  // cada face: ângulo da normal e se é a parte de cima (inclinada, pega mais luz)
+  const faces = [...el.querySelectorAll(".giro-face")].map(f => ({f,
+    n: f.classList.contains("costas") ? 180 : f.classList.contains("dir") ? 90 : f.classList.contains("esq") ? 270 : 0,
+    cima: f.classList.contains("cima")}));
   let ang = 0, vel = 0, raf = 0;
   function tamanho(){
     const r = el.getBoundingClientRect();
     const w = Math.min(r.width * .5, (r.height - 40) * GIRO_PROP.w / GIRO_PROP.h);
-    el.style.setProperty("--w", w + "px");
-    el.style.setProperty("--d", w * GIRO_PROP.d / GIRO_PROP.w + "px");
-    el.style.setProperty("--h", w * GIRO_PROP.h / GIRO_PROP.w + "px");
+    const d = w * GIRO_PROP.d / GIRO_PROP.w, h = w * GIRO_PROP.h / GIRO_PROP.w, hs = h * GIRO_PROP.hs / GIRO_PROP.h;
+    const l = Math.hypot(hs, d / 2); // comprimento da parte inclinada
+    const v = {w, d, h, hs, l, bgh: h * l / hs};
+    Object.entries(v).forEach(([k, x]) => el.style.setProperty("--" + k, x + "px"));
+    el.style.setProperty("--incl", Math.asin(d / 2 / l) * 180 / Math.PI + "deg");
   }
   function desenha(){
     caixa.style.transform = `rotateY(${ang}deg)`;
-    // luz: a face virada pra frente fica mais clara
-    faces.forEach((f, i) => { const c = Math.cos((normais[i] + ang) * Math.PI / 180); f.style.filter = `brightness(${(.72 + .28 * Math.max(0, c)).toFixed(3)})`; });
+    faces.forEach(({f, n, cima}) => {
+      const c = Math.max(0, Math.cos((n + ang) * Math.PI / 180));
+      f.style.filter = `brightness(${(.7 + .26 * c + (cima ? .06 : 0)).toFixed(3)})`;
+    });
   }
   tamanho(); desenha();
   new ResizeObserver(tamanho).observe(el);
   // uma volta de apresentação quando a página abre
   if (!fxReduz) {
-    const t0 = performance.now(), fim = -18, dur = 1700;
+    const t0 = performance.now(), fim = -24, dur = 1800;
     const passo = t => { const p = Math.min(1, (t - t0) / dur), k = 1 - Math.pow(1 - p, 3); ang = (-360 + fim) * k; desenha(); if (p < 1 && !el._mexeu) raf = requestAnimationFrame(passo); };
     setTimeout(() => { if (!el._mexeu) raf = requestAnimationFrame(passo); }, 350);
-  } else { ang = -18; desenha(); }
+  } else { ang = -24; desenha(); }
   let x0 = null, a0 = 0, ult = 0, tUlt = 0;
   el.addEventListener("pointerdown", e => {
     el._mexeu = true; cancelAnimationFrame(raf); vel = 0;

@@ -229,11 +229,19 @@ body.em-produto main{display:none}
 .giro.girando{cursor:grabbing}
 .giro-cena{perspective:1300px;width:var(--w);height:var(--h);margin-top:-18px}
 .giro-caixa{position:relative;width:var(--w);height:var(--h);transform-style:preserve-3d;will-change:transform}
-.pag-foto.recorte .giro-face,.giro-face{position:absolute;top:0;height:var(--h);padding:0;object-fit:fill;backface-visibility:hidden;-webkit-backface-visibility:hidden;pointer-events:none}
-.giro-face.frente,.giro-face.costas{left:0;width:var(--w)}
-.giro-face.dir,.giro-face.esq{left:calc((var(--w) - var(--d)) / 2);width:var(--d)}
-.giro-face.frente{transform:translateZ(calc(var(--d) / 2))}
-.giro-face.costas{transform:rotateY(180deg) translateZ(calc(var(--d) / 2))}
+.pag-foto.recorte .giro-face,.giro-face{position:absolute;padding:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;pointer-events:none}
+/* frente e costas: parte de baixo reta + parte de cima inclinada até o topo */
+.giro-face.plano{left:0;width:var(--w);background-repeat:no-repeat}
+.giro-face.frente{background-image:var(--img-frente)}
+.giro-face.costas{background-image:var(--img-costas)}
+.giro-face.baixo{top:var(--hs);height:calc(var(--h) - var(--hs));background-size:var(--w) var(--h);background-position:0 calc(-1 * var(--hs))}
+.giro-face.cima{top:calc(var(--hs) - var(--l));height:var(--l);background-size:var(--w) var(--bgh);background-position:0 0;transform-origin:50% 100%}
+.giro-face.frente.baixo{transform:translateZ(calc(var(--d) / 2))}
+.giro-face.frente.cima{transform:translateZ(calc(var(--d) / 2)) rotateX(var(--incl))}
+.giro-face.costas.baixo{transform:rotateY(180deg) translateZ(calc(var(--d) / 2))}
+.giro-face.costas.cima{transform:rotateY(180deg) translateZ(calc(var(--d) / 2)) rotateX(var(--incl))}
+/* laterais com o bico */
+.pag-foto.recorte .giro-face.lado,.giro-face.lado{top:0;left:calc((var(--w) - var(--d)) / 2);width:var(--d);height:var(--h);object-fit:fill}
 .giro-face.dir{transform:rotateY(90deg) translateZ(calc(var(--w) / 2))}
 .giro-face.esq{transform:rotateY(-90deg) translateZ(calc(var(--w) / 2))}
 .giro::after{content:"";position:absolute;left:50%;bottom:38px;width:calc(var(--w) * 1.1);height:18px;transform:translateX(-50%);background:radial-gradient(closest-side,rgba(40,90,130,.35),transparent);pointer-events:none}
