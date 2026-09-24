@@ -109,7 +109,7 @@ const WHATS = "5585900000000";
 // Pontos de venda do carrossel de mapas. "busca" é o que vai pro Google Maps (endereço ou nome do lugar).
 const PONTOS = [
   {nome:"CC da Unifor", sub:"Farmácia Santa Cecília · Centro de Convivência", busca:"Centro de Convivência Unifor, Av. Washington Soares, 1321 - Edson Queiroz, Fortaleza - CE", foto:"img/ponto.jpg"},
-  {nome:"Fazendinha", sub:"Fortaleza, CE", busca:"Fazendinha, Fortaleza - CE"}
+  {nome:"Fazendinha", sub:"Supermercado · Rua Vicente Linhares, 1111 - Aldeota", busca:"Fazendinha Supermercados, Rua Vicente Linhares, 1111 - Aldeota, Fortaleza - CE, 60135-270"}
 ];
 
 // Preços de EXEMPLO — trocar pelos valores reais.
@@ -120,7 +120,7 @@ const PRODUTOS = [
   {id:"caramel", texto:["O <b>Salted Caramel</b> é pra quem gosta do doce com personalidade.","Pipoca crocante coberta com <b>caramelo</b> e uma <b>pitada de sal</b> que deixa tudo mais viciante.","Pacote de <b>110g</b>. Doce, salgadinho e impossível de parar."], nome:"Salted Caramel", vem:"1× 110g", desc:"Caramelo com um toque de sal. Doce, crocante e difícil de parar.", preco:14.90, foto:"img/pacote-caramel.webp", reserva:"img/caramel.jpg", recorte:true, camadas:["Pipoca crocante","Caramelo","Pitada de sal"]},
   {id:"duo", monta:2, texto:["O <b>Duo Bites</b> é o jeito mais fácil de começar.","São <b>2 pacotes de 110g</b> pra você montar do seu jeito: um de cada ou dois do seu favorito, entre <b>Milky</b> e <b>Salted Caramel</b>.","Monte o seu e descubra o seu vício."], nome:"Duo Bites", vem:"2× 110g", desc:"1 Milky + 1 Salted Caramel. O único duo que a gente gosta.", preco:27.90, de:29.80, pacotes:2, foto:"img/celular.jpg", camadas:["1 Milky 110g","1 Salted Caramel 110g"]},
   {id:"viciado", monta:4, texto:["O <b>Kit Viciado</b> é pra quem já sabe que um pacote nunca é suficiente.","São <b>4 unidades de 110g</b> com os sabores que você escolher: <b>Milky</b> e <b>Salted Caramel</b>, na proporção que quiser.","Pra dividir… ou não."], nome:"Kit Viciado", vem:"4× 110g", desc:"2 Milky + 2 Salted Caramel. Pra dividir… ou não.", preco:54.90, de:59.60, pacotes:4, foto:"img/duo.jpg", selo:"Mais vendido", camadas:["2 Milky 110g","2 Salted Caramel 110g"]},
-  {id:"presente", monta:2, texto:["O <b>Presente Bites</b> chega pronto pra entregar, na <b>sacolinha rosa da Bites</b>.","Você escolhe os <b>2 pacotes de 110g</b> e a gente completa com <b>1 pote Pop Bites</b>.","Um pedacinho de felicidade pra quem você gosta."], nome:"Presente Bites", vem:"2× 110g + 1 Pop Bites", desc:"Sacola rosa da Bites com 1 Milky, 1 Salted Caramel e 1 pote Pop Bites. Pronto pra entregar.", preco:44.90, foto:"img/presente.jpg", selo:"Pra presentear", brinde:"Vai na sacolinha rosa da Bites 🎁", camadas:["Sacola Bites","1 Milky","1 Salted Caramel","1 Pop Bites"]}
+  {id:"presente", monta:2, texto:["O <b>Presente Bites</b> chega pronto pra entregar, na <b>sacolinha rosa da Bites</b>.","Você escolhe os <b>2 pacotes de 110g</b> entre <b>Milky</b> e <b>Salted Caramel</b>, e a gente entrega tudo embaladinho.","Um pedacinho de felicidade pra quem você gosta."], nome:"Presente Bites", vem:"2× 110g + sacolinha", desc:"Sacola rosa da Bites com 2 pacotes à sua escolha. Pronto pra entregar.", preco:44.90, foto:"img/presente.jpg", selo:"Pra presentear", brinde:"Vai na sacolinha rosa da Bites 🎁", camadas:["Sacola Bites","2 pacotes de 110g"]}
 ];
 const porId = Object.fromEntries(PRODUTOS.map(p => [p.id, p]));
 // sabores que dá pra escolher ao montar um kit
