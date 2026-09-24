@@ -106,6 +106,12 @@
 // Número do WhatsApp da Bites (DDI+DDD+número, só dígitos). EXEMPLO — trocar pelo número real.
 const WHATS = "5585900000000";
 
+// Pontos de venda do carrossel de mapas. "busca" é o que vai pro Google Maps (endereço ou nome do lugar).
+const PONTOS = [
+  {nome:"CC da Unifor", sub:"Farmácia Santa Cecília · Centro de Convivência", busca:"Centro de Convivência Unifor, Av. Washington Soares, 1321 - Edson Queiroz, Fortaleza - CE", foto:"img/ponto.jpg"},
+  {nome:"Fazendinha", sub:"Fortaleza, CE", busca:"Fazendinha, Fortaleza - CE"}
+];
+
 // Preços de EXEMPLO — trocar pelos valores reais.
 // recorte: foto de pacote sem fundo (fica inteira no card, como no modelo)
 const PRODUTOS = [
@@ -231,6 +237,57 @@ if (!fxReduz) {
 posicionarKits();
 if (document.fonts) document.fonts.ready.then(posicionarKits);
 autoPlay();
+
+// ---------- onde encontrar: carrossel de mapas ----------
+(() => {
+  const trilhoM = $("#mapas-trilho");
+  const q = t => encodeURIComponent(t);
+  trilhoM.innerHTML = PONTOS.map((p, i) => `
+    <article class="mapa-card" data-i="${i}" aria-label="${esc(p.nome)}">
+      <div class="mapa-quadro">
+        <span class="mapa-pino"><svg><use href="#i-pino"/></svg>${esc(p.nome)}</span>
+        <iframe src="https://www.google.com/maps?q=${q(p.busca)}&z=16&output=embed" title="Mapa: ${esc(p.nome)}" loading="lazy" referrerpolicy="no-referrer-when-downgrade" tabindex="-1"></iframe>
+        <button class="mapa-trava" aria-label="Mexer no mapa de ${esc(p.nome)}"><span>Toque pra mexer no mapa</span></button>
+      </div>
+      <div class="mapa-info">
+        ${p.foto ? `<img src="${p.foto}" alt="" loading="lazy">` : ""}
+        <div class="mapa-txt"><div class="mapa-nome">${esc(p.nome)}</div><div class="mapa-sub">${esc(p.sub)}</div></div>
+        <a class="mapa-bt" href="https://www.google.com/maps/dir/?api=1&destination=${q(p.busca)}" target="_blank" rel="noopener"><svg><use href="#i-pino"/></svg> Como chegar</a>
+      </div>
+    </article>`).join("");
+  $("#mapas-pilulas").innerHTML = PONTOS.map((p, i) => `<button class="kit-pilula" role="tab" data-i="${i}" aria-selected="false">${esc(p.nome)}</button>`).join("");
+  const cards = [...trilhoM.children], pils = [...document.querySelectorAll("#mapas-pilulas .kit-pilula")];
+  let atual = -1;
+  function marca(){
+    const meio = trilhoM.scrollLeft + trilhoM.clientWidth / 2;
+    let i = 0, melhor = Infinity;
+    cards.forEach((c, k) => { const d = Math.abs(c.offsetLeft + c.offsetWidth / 2 - meio); if (d < melhor) { melhor = d; i = k; } });
+    if (i === atual) return;
+    atual = i;
+    cards.forEach((c, k) => {
+      c.classList.toggle("ativo", k === i);
+      if (k !== i) { c.classList.remove("solto"); c.querySelector("iframe").tabIndex = -1; } // volta a travar o mapa que saiu do centro
+    });
+    pils.forEach((b, k) => b.setAttribute("aria-selected", k === i));
+  }
+  const irMapa = i => { i = Math.max(0, Math.min(cards.length - 1, i)); const c = cards[i]; trilhoM.scrollTo({left: c.offsetLeft + c.offsetWidth / 2 - trilhoM.clientWidth / 2, behavior: fxReduz ? "auto" : "smooth"}); };
+  trilhoM.addEventListener("scroll", () => requestAnimationFrame(marca), {passive:true});
+  $("#mapa-ant").onclick = () => irMapa(atual - 1);
+  $("#mapa-prox").onclick = () => irMapa(atual + 1);
+  $("#mapas-pilulas").addEventListener("click", e => { const b = e.target.closest(".kit-pilula"); if (b) irMapa(+b.dataset.i); });
+  trilhoM.addEventListener("keydown", e => {
+    if (e.key === "ArrowLeft") { irMapa(atual - 1); e.preventDefault(); }
+    if (e.key === "ArrowRight") { irMapa(atual + 1); e.preventDefault(); }
+  });
+  trilhoM.addEventListener("click", e => {
+    const c = e.target.closest(".mapa-card"); if (!c) return;
+    const i = +c.dataset.i;
+    if (i !== atual) { e.preventDefault(); irMapa(i); return; } // card de lado: traz pro centro
+    if (e.target.closest(".mapa-trava")) { c.classList.add("solto"); const f = c.querySelector("iframe"); f.tabIndex = 0; f.focus({preventScroll:true}); }
+  });
+  addEventListener("resize", () => { atual = -1; marca(); });
+  marca();
+})();
 
 fxRevelar(".sobre-txt"); fxRevelar(".sobre-img");
 

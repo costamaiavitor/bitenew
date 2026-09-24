@@ -15,6 +15,7 @@
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <symbol id="pip" viewBox="0 0 40 36"><g fill="currentColor"><circle cx="12" cy="20" r="9"/><circle cx="21" cy="12" r="10"/><circle cx="29" cy="21" r="9"/><circle cx="19" cy="25" r="9.5"/></g><path d="M13 17q3-3 6-1M23 9q3-1 5 2M24 24q3 2 6 0" stroke="rgba(120,60,20,.22)" fill="none" stroke-width="1.8" stroke-linecap="round"/></symbol>
   <symbol id="i-sacola" viewBox="0 0 24 24"><path d="M5 8h14l-1 12H6L5 8Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M9 10V7a3 3 0 0 1 6 0v3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+  <symbol id="i-pino" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5Z"/></symbol>
   <symbol id="i-seta" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
   <symbol id="i-insta" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.3" cy="6.7" r="1.3" fill="currentColor"/></symbol>
   <symbol id="i-tiktok" viewBox="0 0 24 24"><path fill="currentColor" d="M16.6 3c.4 2.2 1.8 3.7 4 3.9v3.1a7.4 7.4 0 0 1-4-1.3v6.4c0 3.4-2.6 5.9-5.8 5.9A5.8 5.8 0 0 1 5 15.2c0-3.6 3.2-6.3 6.8-5.7v3.2c-1.7-.4-3.6.7-3.6 2.5 0 1.5 1.2 2.6 2.6 2.6 1.6 0 2.7-1.1 2.7-3V3h3.1Z"/></symbol>
@@ -29,6 +30,7 @@
       <a href="#inicio">Início</a>
       <a href="#quem-somos">Quem somos</a>
       <a href="#produtos">Produtos</a>
+      <a href="#onde">Onde encontrar</a>
       <a href="#contato">Fale conosco</a>
     </nav>
     <button class="bt-sacola" id="bt-sacola" aria-label="Abrir sacola"><svg><use href="#i-sacola"/></svg><span class="badge num" id="badge">0</span></button>
@@ -143,6 +145,22 @@
     </div>
   </section>
 
+  <!-- ============ ONDE ENCONTRAR (mapas) ============ -->
+  <section id="onde" class="onde">
+    <div class="onde-dentro">
+      <div class="kits-cab">
+        <p class="kits-sobrelinha">Achou, levou</p>
+        <h2 class="kits-titulo">Onde encontrar</h2>
+      </div>
+      <div class="mapas" id="mapas">
+        <div class="mapas-trilho" id="mapas-trilho" tabindex="0" aria-label="Pontos de venda. Deslize para o lado."></div>
+        <button class="carrossel-seta ant" id="mapa-ant" aria-label="Ponto anterior"><svg><use href="#i-seta"/></svg></button>
+        <button class="carrossel-seta prox" id="mapa-prox" aria-label="Próximo ponto"><svg><use href="#i-seta"/></svg></button>
+      </div>
+      <div class="kits-pilulas" id="mapas-pilulas" role="tablist" aria-label="Escolher ponto"></div>
+    </div>
+  </section>
+
   <!-- ============ CONTATO ============ -->
   <section id="contato" class="contato">
     <div class="contato-grade">
@@ -195,8 +213,8 @@
     <div class="rodape-col">
       <h3>Onde tem</h3>
       <ul>
-        <li><span>CC da Unifor</span></li>
-        <li><span>Farmácias Santa Cecília</span></li>
+        <li><a href="#onde">CC da Unifor</a></li>
+        <li><a href="#onde">Fazendinha</a></li>
         <li><span>Entregas em Fortaleza</span></li>
       </ul>
     </div>
