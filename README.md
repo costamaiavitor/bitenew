@@ -8,4 +8,4 @@ carrossel de produtos, contato e rodapé.
 - Site estático: é só abrir o `index.html` ou publicar no GitHub Pages.
 - Número do WhatsApp e preços ficam no começo do `site.js` (hoje são de exemplo).
 - Fotos novas esperadas em `img/`: `logo.png`, `pacote-milky.png`, `pacote-caramel.png`,
-  `piramide.webp`, `pacotes-escuro.jpg`. Enquanto não existirem, o site usa as fotos antigas.
+  `piramide.webp`, `pacotes-recorte.webp`. Enquanto não existirem, o site usa as fotos antigas.

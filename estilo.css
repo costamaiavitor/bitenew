@@ -10,6 +10,8 @@
   --display:"Anton",Impact,"Arial Narrow",sans-serif;
   --corpo:"Gantari",system-ui,-apple-system,"Segoe UI",sans-serif;
   --topo-h:64px;
+  /* céu aquarelado (azul das nuvens) */
+  --ceu:radial-gradient(ellipse 60% 45% at 18% 22%,rgba(255,255,255,.7),transparent 70%),radial-gradient(ellipse 50% 40% at 78% 30%,rgba(124,207,242,.55),transparent 70%),radial-gradient(ellipse 55% 45% at 60% 80%,rgba(255,255,255,.55),transparent 70%),radial-gradient(ellipse 45% 35% at 10% 90%,rgba(124,207,242,.5),transparent 70%),linear-gradient(160deg,var(--azul-claro),var(--azul) 55%,#A6DEF8);
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 [hidden]{display:none!important}
@@ -111,15 +113,15 @@ section[id],main[id]{scroll-margin-top:var(--topo-h)}
 }
 
 /* ===== ELEVANDO MOMENTOS (seção escura) ===== */
-.momentos{position:relative;background:var(--escuro);min-height:60vh;overflow:hidden;display:flex;flex-direction:column}
-.momentos-lado{position:absolute;bottom:0;height:88%;max-height:88%;width:auto;object-fit:contain;pointer-events:none;display:none;filter:drop-shadow(0 20px 40px rgba(0,0,0,.5))}
+.momentos{position:relative;background:var(--ceu);min-height:60vh;overflow:hidden;display:flex;flex-direction:column}
+.momentos-lado{position:absolute;bottom:0;height:88%;max-height:88%;width:auto;object-fit:contain;pointer-events:none;display:none;filter:drop-shadow(0 20px 36px rgba(40,90,130,.4))}
 .momentos-lado.foto{height:62%;border-radius:24px;border:6px solid #fff;bottom:9%}
 @media (min-width:768px){.momentos-lado{display:block}}
 .momentos-esq{left:-2%;transform:rotate(-8deg);transform-origin:bottom left}
 .momentos-dir{right:-2%;transform:rotate(12deg);transform-origin:bottom right}
 .momentos-txt{position:relative;z-index:10;flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:96px 24px 48px}
-.momentos h2{font-family:var(--display);font-weight:400;font-size:clamp(3rem,8vw,5.5rem);text-transform:uppercase;color:var(--azul);line-height:1.05;margin:0 0 16px}
-.momentos p{font-size:18px;color:rgba(255,255,255,.72);max-width:500px;line-height:1.6;margin:0 0 40px}
+.momentos h2{font-family:var(--display);font-weight:400;font-size:clamp(3rem,8vw,5.5rem);text-transform:uppercase;color:var(--rosa);line-height:1.05;margin:0 0 16px;text-shadow:0 5px 0 #fff}
+.momentos p{font-size:18px;color:var(--tinta);max-width:500px;line-height:1.6;margin:0 0 40px;font-weight:500}
 .momentos-bt{display:inline-block;background:var(--rosa);color:#fff;font-family:var(--display);font-size:20px;letter-spacing:.05em;text-transform:uppercase;padding:14px 40px;border-radius:6px;box-shadow:0 4px 0 rgba(0,0,0,.3);animation:pulsa-rosa 1.4s ease-in-out infinite}
 .momentos-bt:active{transform:scale(.97) translateY(2px);box-shadow:none;animation:none}
 .onda{line-height:0;position:relative;z-index:5}
@@ -267,11 +269,11 @@ body.em-produto main{display:none}
 .sac-det{display:block;color:var(--rosa-esc)!important;font-weight:700}
 
 /* ===== CONTATO ===== */
-.contato{background:radial-gradient(ellipse 60% 45% at 18% 22%,rgba(255,255,255,.7),transparent 70%),radial-gradient(ellipse 50% 40% at 78% 30%,rgba(124,207,242,.55),transparent 70%),radial-gradient(ellipse 55% 45% at 60% 80%,rgba(255,255,255,.55),transparent 70%),radial-gradient(ellipse 45% 35% at 10% 90%,rgba(124,207,242,.5),transparent 70%),linear-gradient(160deg,var(--azul-claro),var(--azul) 55%,#A6DEF8);color:var(--tinta)}
+.contato{background:var(--ceu);color:var(--tinta)}
 .contato-grade{display:grid;grid-template-columns:1fr 1fr;min-height:520px}
-@media (max-width:768px){.contato-grade{grid-template-columns:1fr}.contato-img{display:none}}
-.contato-img{display:flex;align-items:stretch;background:#000}
-.contato-img img{width:100%;height:100%;object-fit:cover}
+@media (max-width:768px){.contato-grade{grid-template-columns:1fr}.contato-img{height:340px;padding:20px 20px 0}}
+.contato-img{display:flex;align-items:center;justify-content:center;padding:32px}
+.contato-img img{width:100%;height:100%;max-height:560px;object-fit:contain;filter:drop-shadow(0 24px 34px rgba(40,90,130,.35))}
 .contato-col{display:flex;flex-direction:column;justify-content:center;padding:48px 32px;max-width:616px;margin:0 auto;width:100%}
 .contato h2{font-family:var(--display);font-weight:400;font-size:clamp(2.1rem,4vw,3.4rem);text-transform:uppercase;line-height:1.08;margin:0 0 12px}
 .contato-desc{font-size:15px;line-height:1.6;margin:0 0 24px}
