@@ -271,9 +271,10 @@ body.em-produto main{display:none}
 /* ===== CONTATO ===== */
 .contato{background:var(--ceu);color:var(--tinta)}
 .contato-grade{display:grid;grid-template-columns:1fr 1fr;min-height:520px}
-@media (max-width:768px){.contato-grade{grid-template-columns:1fr}.contato-img{height:340px;padding:20px 20px 0}}
-.contato-img{display:flex;align-items:center;justify-content:center;padding:32px}
-.contato-img img{width:100%;height:100%;max-height:560px;object-fit:contain;filter:drop-shadow(0 24px 34px rgba(40,90,130,.35))}
+@media (max-width:768px){.contato-grade{grid-template-columns:1fr}.contato-img{padding:24px 24px 0 0}.contato-img img{max-height:360px;-webkit-mask-image:linear-gradient(to bottom,#000 82%,transparent);mask-image:linear-gradient(to bottom,#000 82%,transparent)}}
+/* a foto é reta na esquerda e embaixo: fica colada no canto inferior esquerdo */
+.contato-img{display:flex;align-items:flex-end;justify-content:flex-start;padding:40px 24px 0 0;overflow:hidden}
+.contato-img img{width:auto;height:auto;max-width:100%;max-height:600px;filter:drop-shadow(12px 20px 30px rgba(40,90,130,.3))}
 .contato-col{display:flex;flex-direction:column;justify-content:center;padding:48px 32px;max-width:616px;margin:0 auto;width:100%}
 .contato h2{font-family:var(--display);font-weight:400;font-size:clamp(2.1rem,4vw,3.4rem);text-transform:uppercase;line-height:1.08;margin:0 0 12px}
 .contato-desc{font-size:15px;line-height:1.6;margin:0 0 24px}
