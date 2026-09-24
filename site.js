@@ -115,12 +115,11 @@ const PONTOS = [
 // Preços de EXEMPLO — trocar pelos valores reais.
 // recorte: foto de pacote sem fundo (fica inteira no card, como no modelo)
 const PRODUTOS = [
-  {id:"milky", nome:"Milky", vem:"1× 110g", desc:"Pipoca crocante coberta com chocolate branco e leite em pó. A queridinha da casa.", preco:14.90, foto:"img/pacote-milky.png", reserva:"img/milky.jpg", recorte:true, selo:"Mais pedido", camadas:["Pipoca crocante","Chocolate branco","Leite em pó"]},
-  {id:"caramel", nome:"Salted Caramel", vem:"1× 110g", desc:"Caramelo com um toque de sal. Doce, crocante e difícil de parar.", preco:14.90, foto:"img/pacote-caramel.png", reserva:"img/caramel.jpg", recorte:true, camadas:["Pipoca crocante","Caramelo","Pitada de sal"]},
+  {id:"milky", nome:"Milky", vem:"1× 110g", desc:"Pipoca crocante coberta com chocolate branco e leite em pó. A queridinha da casa.", preco:14.90, foto:"img/pacote-milky.webp", reserva:"img/milky.jpg", recorte:true, selo:"Mais pedido", camadas:["Pipoca crocante","Chocolate branco","Leite em pó"]},
+  {id:"caramel", nome:"Salted Caramel", vem:"1× 110g", desc:"Caramelo com um toque de sal. Doce, crocante e difícil de parar.", preco:14.90, foto:"img/pacote-caramel.webp", reserva:"img/caramel.jpg", recorte:true, camadas:["Pipoca crocante","Caramelo","Pitada de sal"]},
   {id:"duo", nome:"Duo Bites", vem:"2× 110g", desc:"1 Milky + 1 Salted Caramel. O único duo que a gente gosta.", preco:27.90, de:29.80, pacotes:2, foto:"img/celular.jpg", camadas:["1 Milky 110g","1 Salted Caramel 110g"]},
   {id:"viciado", nome:"Kit Viciado", vem:"4× 110g", desc:"2 Milky + 2 Salted Caramel. Pra dividir… ou não.", preco:54.90, de:59.60, pacotes:4, foto:"img/duo.jpg", selo:"Mais vendido", camadas:["2 Milky 110g","2 Salted Caramel 110g"]},
-  {id:"presente", nome:"Presente Bites", vem:"2× 110g + 1 Pop Bites", desc:"Sacola rosa da Bites com 1 Milky, 1 Salted Caramel e 1 pote Pop Bites. Pronto pra entregar.", preco:44.90, foto:"img/presente.jpg", selo:"Pra presentear", brinde:"Vai na sacolinha rosa da Bites 🎁", camadas:["Sacola Bites","1 Milky","1 Salted Caramel","1 Pop Bites"]},
-  {id:"pop", nome:"Pop Bites", vem:"1 pote", desc:"Pipoca caramelizada com chocolate, no pote. Culpada de ser gostosa demais.", preco:12.90, foto:"img/pote.jpg", selo:"Novo", camadas:["Pipoca","Caramelo","Chocolate"]}
+  {id:"presente", nome:"Presente Bites", vem:"2× 110g + 1 Pop Bites", desc:"Sacola rosa da Bites com 1 Milky, 1 Salted Caramel e 1 pote Pop Bites. Pronto pra entregar.", preco:44.90, foto:"img/presente.jpg", selo:"Pra presentear", brinde:"Vai na sacolinha rosa da Bites 🎁", camadas:["Sacola Bites","1 Milky","1 Salted Caramel","1 Pop Bites"]}
 ];
 const porId = Object.fromEntries(PRODUTOS.map(p => [p.id, p]));
 const $ = s => document.querySelector(s);
