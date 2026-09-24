@@ -224,7 +224,7 @@ body.em-produto main{display:none}
 .pag-foto.recorte{background:radial-gradient(ellipse 60% 50% at 30% 30%,rgba(255,255,255,.7),transparent 70%),linear-gradient(160deg,var(--azul-claro),var(--azul))}
 .pag-foto.recorte img{object-fit:contain;padding:22px}
 /* caixa 3D */
-.pag-foto.com-giro{aspect-ratio:auto;height:clamp(420px,52vw,600px);border-color:var(--azul-forte)}
+.pag-foto.com-giro{aspect-ratio:auto;height:clamp(420px,52vw,600px);border-color:var(--azul-forte);background:url(img/combos/ceu.webp) center/cover,var(--azul)}
 .giro{position:relative;width:100%;height:100%;cursor:grab;touch-action:pan-y;user-select:none;-webkit-user-select:none;display:flex;align-items:center;justify-content:center}
 .giro.girando{cursor:grabbing}
 .giro-cena{perspective:1300px;width:var(--w);height:var(--h);margin-top:-18px}
@@ -368,7 +368,7 @@ body.tem-barra .zap-flutua{transform:translateY(-76px)}
 }
 .sac-titulo{font-family:var(--display);font-weight:400;font-size:32px;text-transform:uppercase;margin:10px 0 12px}
 .sac-item{display:grid;grid-template-columns:56px 1fr auto;gap:12px;align-items:center;padding:10px 0;border-bottom:1px dashed var(--linha)}
-.sac-item img{width:56px;height:56px;border-radius:12px;object-fit:cover;background:#fff}
+.sac-item img{width:56px;height:56px;border-radius:12px;object-fit:contain;padding:3px;background:linear-gradient(160deg,var(--azul-claro),var(--azul))}
 .sac-item b{display:block;font-size:14.5px;line-height:1.2}
 .sac-item small{color:var(--tinta-2);font-size:12.5px}
 .sac-item .passo button{width:34px;height:36px;font-size:19px}

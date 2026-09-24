@@ -114,10 +114,10 @@ const PONTOS = [
 
 // Preços de EXEMPLO — trocar pelos valores reais.
 // monta: quantos pacotes a pessoa escolhe na página do kit (sabores de SABORES_KIT)
-// recorte: foto de pacote sem fundo (fica inteira no card, como no modelo)
+// foto: imagem do card (céu com nuvens, igual aos combos) · mini: pacote de frente pras miniaturas
 const PRODUTOS = [
-  {id:"milky", texto:["O <b>Milky</b> é a queridinha da casa.","Pipoca crocante coberta com <b>chocolate branco</b> e finalizada com <b>leite em pó</b>. Doce na medida e crocante até o último pedacinho.","Pacote de <b>110g</b>. Difícil é comer um só."], nome:"Milky", vem:"1× 110g", desc:"Pipoca crocante coberta com chocolate branco e leite em pó. A queridinha da casa.", preco:14.90, foto:"img/giro/milky-frente.webp", reserva:"img/milky.jpg", recorte:true, giro:"milky", selo:"Mais pedido", camadas:["Pipoca crocante","Chocolate branco","Leite em pó"]},
-  {id:"caramel", texto:["O <b>Salted Caramel</b> é pra quem gosta do doce com personalidade.","Pipoca crocante coberta com <b>caramelo</b> e uma <b>pitada de sal</b> que deixa tudo mais viciante.","Pacote de <b>110g</b>. Doce, salgadinho e impossível de parar."], nome:"Salted Caramel", vem:"1× 110g", desc:"Caramelo com um toque de sal. Doce, crocante e difícil de parar.", preco:14.90, foto:"img/giro/caramel-frente.webp", reserva:"img/caramel.jpg", recorte:true, giro:"caramel", camadas:["Pipoca crocante","Caramelo","Pitada de sal"]},
+  {id:"milky", texto:["O <b>Milky</b> é a queridinha da casa.","Pipoca crocante coberta com <b>chocolate branco</b> e finalizada com <b>leite em pó</b>. Doce na medida e crocante até o último pedacinho.","Pacote de <b>110g</b>. Difícil é comer um só."], nome:"Milky", vem:"1× 110g", desc:"Pipoca crocante coberta com chocolate branco e leite em pó. A queridinha da casa.", preco:14.90, foto:"img/combos/milky.webp", mini:"img/giro/milky-frente.webp", reserva:"img/milky.jpg", giro:"milky", selo:"Mais pedido", camadas:["Pipoca crocante","Chocolate branco","Leite em pó"]},
+  {id:"caramel", texto:["O <b>Salted Caramel</b> é pra quem gosta do doce com personalidade.","Pipoca crocante coberta com <b>caramelo</b> e uma <b>pitada de sal</b> que deixa tudo mais viciante.","Pacote de <b>110g</b>. Doce, salgadinho e impossível de parar."], nome:"Salted Caramel", vem:"1× 110g", desc:"Caramelo com um toque de sal. Doce, crocante e difícil de parar.", preco:14.90, foto:"img/combos/caramel.webp", mini:"img/giro/caramel-frente.webp", reserva:"img/caramel.jpg", giro:"caramel", camadas:["Pipoca crocante","Caramelo","Pitada de sal"]},
   {id:"duo", monta:2, texto:["O <b>BITES Duo</b> é o jeito mais fácil de começar.","São <b>2 pacotes de 110g</b> pra você montar do seu jeito: um de cada ou dois do seu favorito, entre <b>Milky</b> e <b>Salted Caramel</b>.","Monte o seu e descubra o seu vício."], nome:"BITES Duo", vem:"2× 110g", desc:"2 pacotes à sua escolha. Um de cada ou dois do favorito.", preco:27.90, de:29.80, pacotes:2, foto:"img/combos/duo.webp", camadas:["2 pacotes de 110g"]},
   {id:"crew", monta:6, texto:["O <b>BITES Crew</b> é pra dividir com a galera… ou guardar tudo pra você.","São <b>6 pacotes de 110g</b> com os sabores que você escolher: <b>Milky</b> e <b>Salted Caramel</b>, na proporção que quiser.","Perfeito pra filme, estudo em grupo ou aquele rolê em casa."], nome:"BITES Crew", vem:"6× 110g", desc:"6 pacotes à sua escolha. Pra dividir com a galera.", preco:79.90, de:89.40, pacotes:6, foto:"img/combos/crew.webp", selo:"Mais vendido", camadas:["6 pacotes de 110g"]},
   {id:"pack", monta:10, texto:["O <b>BITES Pack</b> é o estoque completo de quem já é viciado.","São <b>10 pacotes de 110g</b> pra montar do seu jeito, entre <b>Milky</b> e <b>Salted Caramel</b>.","O melhor preço por pacote. Pra nunca ficar sem."], nome:"BITES Pack", vem:"10× 110g", desc:"10 pacotes à sua escolha. O melhor preço por pacote.", preco:124.90, de:149.00, pacotes:10, foto:"img/combos/pack.webp", selo:"Melhor preço", camadas:["10 pacotes de 110g"]}
@@ -456,7 +456,7 @@ function abrirPagina(id){
   const linhas = p.monta ? SABORES_KIT.map(k => porId[k]) : [p];
   $("#pag-sabores").innerHTML = linhas.map(s => `
     <div class="pag-sabor" data-sabor="${s.id}">
-      <span class="pag-sabor-img"><img src="${s.foto}"${s.reserva ? ` data-reserva="${s.reserva}"` : ""} alt=""></span>
+      <span class="pag-sabor-img"><img src="${s.mini || s.foto}"${s.reserva ? ` data-reserva="${s.reserva}"` : ""} alt=""></span>
       <span class="pag-sabor-nome"><b>${esc(p.monta ? s.nome + " 110g" : "Quantidade")}</b><small>${esc(p.monta ? "110g" : s.nome + " 110g")}</small></span>
       <span class="pag-passo">
         <button type="button" class="pag-menos" aria-label="Menos ${esc(s.nome)}">−</button>
@@ -662,7 +662,7 @@ function desenharSacola(){
   $("#sac-lista").innerHTML = sacola.itens.map(i => {
     const p = porId[i.id.split("|")[0]];
     return `<div class="sac-item" data-id="${esc(i.id)}">
-      <img src="${p ? p.foto : "img/milky.jpg"}"${p && p.reserva ? ` data-reserva="${p.reserva}"` : ""} alt="">
+      <img src="${p ? (p.mini || p.foto) : "img/milky.jpg"}"${p && p.reserva ? ` data-reserva="${p.reserva}"` : ""} alt="">
       <div><b>${esc(i.nome)}</b>${i.detalhe ? `<small class="sac-det">${esc(i.detalhe)}</small>` : ""}<small class="num">${R(i.preco)} cada · ${R(i.preco * i.qtd)}</small></div>
       <div class="passo"><button data-menos aria-label="Tirar um ${esc(i.nome)}">−</button><output class="num">${i.qtd}</output><button data-mais aria-label="Mais um ${esc(i.nome)}">+</button></div>
     </div>`;
