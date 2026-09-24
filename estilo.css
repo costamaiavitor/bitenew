@@ -85,7 +85,7 @@ section[id],main[id]{scroll-margin-top:var(--topo-h)}
   .hero-bt-mobile:active{transform:scale(.97) translateY(2px);box-shadow:none;animation:none}
 }
 .ticker{background:radial-gradient(ellipse 30% 120% at 20% 50%,rgba(255,255,255,.55),transparent 70%),radial-gradient(ellipse 30% 120% at 75% 50%,rgba(124,207,242,.45),transparent 70%),var(--azul);overflow:hidden;padding:18px 0}
-.ticker-trilho{display:flex;width:max-content;white-space:nowrap;animation:marquee 22s linear infinite;font-family:var(--display);font-size:clamp(28px,4vw,45px);color:var(--tinta);text-transform:uppercase;line-height:1.2}
+.ticker-trilho{display:flex;width:max-content;white-space:nowrap;animation:marquee 22s linear infinite;font-family:var(--display);font-size:clamp(28px,4vw,45px);color:#fff;text-shadow:0 3px 0 var(--rosa-esc),0 0 14px rgba(196,36,107,.35);text-transform:uppercase;line-height:1.2}
 @keyframes marquee{to{transform:translateX(-50%)}}
 
 /* ===== QUEM SOMOS ===== */
