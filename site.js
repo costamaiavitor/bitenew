@@ -357,7 +357,7 @@ const GIRO_PERFIL = {
   caramel: [[0,0],[30,26.3],[70,45.1],[120,65.4],[180,84.7],[250,94.4],[620,95]]
 };
 function giroHTML(p){
-  const f = n => `img/giro/${p.giro}-${n}.webp?v=8`;
+  const f = n => `img/giro/${p.giro}-${n}.webp?v=9`;
   const faixas = lado => GIRO_PERFIL[p.giro].slice(1).map((_, i) => `<div class="giro-face faixa ${lado}" data-i="${i}"></div>`).join("");
   return `<div class="giro" data-sabor="${p.giro}" role="img" aria-label="${esc(p.nome)}: segure e arraste pra girar a embalagem">
     <div class="giro-cena"><div class="giro-caixa" style="--img-frente:url(${f("frente")});--img-costas:url(${f("costas")})">

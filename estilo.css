@@ -224,7 +224,7 @@ body.em-produto main{display:none}
 .pag-foto.recorte{background:radial-gradient(ellipse 60% 50% at 30% 30%,rgba(255,255,255,.7),transparent 70%),linear-gradient(160deg,var(--azul-claro),var(--azul))}
 .pag-foto.recorte img{object-fit:contain;padding:22px}
 /* caixa 3D */
-.pag-foto.com-giro{aspect-ratio:auto;height:clamp(380px,48vw,520px);border-color:var(--azul-forte)}
+.pag-foto.com-giro{aspect-ratio:auto;height:clamp(420px,52vw,600px);border-color:var(--azul-forte)}
 .giro{position:relative;width:100%;height:100%;cursor:grab;touch-action:pan-y;user-select:none;-webkit-user-select:none;display:flex;align-items:center;justify-content:center}
 .giro.girando{cursor:grabbing}
 .giro-cena{perspective:1300px;width:var(--w);height:var(--h);margin-top:-18px}
