@@ -6,7 +6,7 @@ carrossel de produtos, contato e rodapé.
 
 - Pedido pela sacola: monta a mensagem e abre o WhatsApp (`sacola.js`).
 - Site estático: é só abrir o `index.html` ou publicar no GitHub Pages.
-- Número do WhatsApp e preços ficam no começo do `site.js` (hoje são de exemplo).
+- Número do WhatsApp (+55 85 9803-2222) e preços ficam no começo do `site.js` (preços ainda de exemplo).
 - Caixa 3D que gira: faces em `img/giro/<sabor>-{frente,costas,lado-logo,lado-texto}.webp`.
 - Fotos novas esperadas em `img/`:
   `piramide.webp`, `pacotes-recorte.webp`. Enquanto não existirem, o site usa as fotos antigas.

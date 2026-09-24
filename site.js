@@ -103,8 +103,8 @@
 })();
 
 // ================= Bites: produtos, sacola e pedido =================
-// Número do WhatsApp da Bites (DDI+DDD+número, só dígitos). EXEMPLO — trocar pelo número real.
-const WHATS = "5585900000000";
+// Número do WhatsApp da Bites (DDI+DDD+número, só dígitos): +55 85 9803-2222
+const WHATS = "558598032222";
 
 // Pontos de venda do carrossel de mapas. "busca" é o que vai pro Google Maps (endereço ou nome do lugar).
 const PONTOS = [
