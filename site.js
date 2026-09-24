@@ -348,17 +348,20 @@ document.querySelectorAll(".painel").forEach(p => {
 
 // ---------- caixa 3D que gira com o dedo (Milky e Salted Caramel) ----------
 // faces em img/giro/<sabor>-{frente,costas,lado-logo,lado-texto}.webp — frente/costas 400×620, laterais 190×620.
-// A embalagem é "de bico": frente e costas são retas embaixo e inclinam pra dentro em cima (até o topo),
-// e as laterais têm o bico em triângulo. hs = altura (na foto) em que começa a inclinação.
-const GIRO_PROP = {w:400, d:190, h:620, hs:300};
+// A embalagem é "de bico": o papel da frente e das costas vai curvando pra dentro até o topo.
+// GIRO_PERFIL = [altura na foto (0..620), meia-profundidade (0..95)], medido na silhueta das laterais;
+// frente e costas viram faixas horizontais, cada uma inclinada conforme essa curva.
+const GIRO_PROP = {w:400, d:190, h:620};
+const GIRO_PERFIL = {
+  milky:   [[0,0],[30,22.7],[70,40.8],[120,61],[180,81.9],[250,94.2],[620,95]],
+  caramel: [[0,0],[30,26.3],[70,45.1],[120,65.4],[180,84.7],[250,94.4],[620,95]]
+};
 function giroHTML(p){
-  const f = n => `img/giro/${p.giro}-${n}.webp`;
-  return `<div class="giro" role="img" aria-label="${esc(p.nome)}: segure e arraste pra girar a embalagem">
+  const f = n => `img/giro/${p.giro}-${n}.webp?v=5`;
+  const faixas = lado => GIRO_PERFIL[p.giro].slice(1).map((_, i) => `<div class="giro-face faixa ${lado}" data-i="${i}"></div>`).join("");
+  return `<div class="giro" data-sabor="${p.giro}" role="img" aria-label="${esc(p.nome)}: segure e arraste pra girar a embalagem">
     <div class="giro-cena"><div class="giro-caixa" style="--img-frente:url(${f("frente")});--img-costas:url(${f("costas")})">
-      <div class="giro-face plano frente baixo"></div>
-      <div class="giro-face plano frente cima"></div>
-      <div class="giro-face plano costas baixo"></div>
-      <div class="giro-face plano costas cima"></div>
+      ${faixas("frente")}${faixas("costas")}
       <img class="giro-face lado dir" src="${f("lado-logo")}" alt="" draggable="false">
       <img class="giro-face lado esq" src="${f("lado-texto")}" alt="" draggable="false">
     </div></div>
@@ -366,26 +369,36 @@ function giroHTML(p){
   </div>`;
 }
 function montaGiro(el){
-  const caixa = el.querySelector(".giro-caixa");
-  // cada face: ângulo da normal e se é a parte de cima (inclinada, pega mais luz)
+  const caixa = el.querySelector(".giro-caixa"), perfil = GIRO_PERFIL[el.dataset.sabor];
+  let ang = 0, vel = 0, raf = 0;
   const faces = [...el.querySelectorAll(".giro-face")].map(f => ({f,
     n: f.classList.contains("costas") ? 180 : f.classList.contains("dir") ? 90 : f.classList.contains("esq") ? 270 : 0,
-    cima: f.classList.contains("cima")}));
-  let ang = 0, vel = 0, raf = 0;
+    incl: 0}));
   function tamanho(){
     const r = el.getBoundingClientRect();
     const w = Math.min(r.width * .5, (r.height - 40) * GIRO_PROP.w / GIRO_PROP.h);
-    const d = w * GIRO_PROP.d / GIRO_PROP.w, h = w * GIRO_PROP.h / GIRO_PROP.w, hs = h * GIRO_PROP.hs / GIRO_PROP.h;
-    const l = Math.hypot(hs, d / 2); // comprimento da parte inclinada
-    const v = {w, d, h, hs, l, bgh: h * l / hs};
-    Object.entries(v).forEach(([k, x]) => el.style.setProperty("--" + k, x + "px"));
-    el.style.setProperty("--incl", Math.asin(d / 2 / l) * 180 / Math.PI + "deg");
+    const s = w / GIRO_PROP.w, h = GIRO_PROP.h * s;
+    el.style.setProperty("--w", w + "px");
+    el.style.setProperty("--d", GIRO_PROP.d * s + "px");
+    el.style.setProperty("--h", h + "px");
+    faces.forEach(face => {
+      if (!face.f.classList.contains("faixa")) return;
+      const i = +face.f.dataset.i, [ya, da] = perfil[i], [yb, db] = perfil[i + 1];
+      const dy = (yb - ya) * s, dz = (db - da) * s, l = Math.hypot(dy, dz), th = Math.atan2(dz, dy);
+      const k = l / dy, st = face.f.style;
+      const sobra = 2; // cada faixa invade 2px a de cima, pra não abrir fresta na emenda
+      st.top = (yb * s - l - sobra) + "px"; st.height = (l + sobra) + "px";
+      st.backgroundSize = `${w}px ${h * k}px`;
+      st.backgroundPosition = `0 ${-(ya * s * k) + sobra}px`;
+      st.transform = `${face.n === 180 ? "rotateY(180deg) " : ""}translateZ(${db * s}px) rotateX(${th * 180 / Math.PI}deg)`;
+      face.incl = Math.sin(th);
+    });
   }
   function desenha(){
     caixa.style.transform = `rotateY(${ang}deg)`;
-    faces.forEach(({f, n, cima}) => {
+    faces.forEach(({f, n, incl}) => {
       const c = Math.max(0, Math.cos((n + ang) * Math.PI / 180));
-      f.style.filter = `brightness(${(.7 + .26 * c + (cima ? .06 : 0)).toFixed(3)})`;
+      f.style.filter = `brightness(${(.7 + .26 * c + .06 * incl).toFixed(3)})`;
     });
   }
   tamanho(); desenha();
