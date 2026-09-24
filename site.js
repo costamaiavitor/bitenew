@@ -113,15 +113,20 @@ const PONTOS = [
 ];
 
 // Preços de EXEMPLO — trocar pelos valores reais.
+// monta: quantos pacotes a pessoa escolhe na página do kit (sabores de SABORES_KIT)
 // recorte: foto de pacote sem fundo (fica inteira no card, como no modelo)
 const PRODUTOS = [
-  {id:"milky", nome:"Milky", vem:"1× 110g", desc:"Pipoca crocante coberta com chocolate branco e leite em pó. A queridinha da casa.", preco:14.90, foto:"img/pacote-milky.webp", reserva:"img/milky.jpg", recorte:true, selo:"Mais pedido", camadas:["Pipoca crocante","Chocolate branco","Leite em pó"]},
-  {id:"caramel", nome:"Salted Caramel", vem:"1× 110g", desc:"Caramelo com um toque de sal. Doce, crocante e difícil de parar.", preco:14.90, foto:"img/pacote-caramel.webp", reserva:"img/caramel.jpg", recorte:true, camadas:["Pipoca crocante","Caramelo","Pitada de sal"]},
-  {id:"duo", nome:"Duo Bites", vem:"2× 110g", desc:"1 Milky + 1 Salted Caramel. O único duo que a gente gosta.", preco:27.90, de:29.80, pacotes:2, foto:"img/celular.jpg", camadas:["1 Milky 110g","1 Salted Caramel 110g"]},
-  {id:"viciado", nome:"Kit Viciado", vem:"4× 110g", desc:"2 Milky + 2 Salted Caramel. Pra dividir… ou não.", preco:54.90, de:59.60, pacotes:4, foto:"img/duo.jpg", selo:"Mais vendido", camadas:["2 Milky 110g","2 Salted Caramel 110g"]},
-  {id:"presente", nome:"Presente Bites", vem:"2× 110g + 1 Pop Bites", desc:"Sacola rosa da Bites com 1 Milky, 1 Salted Caramel e 1 pote Pop Bites. Pronto pra entregar.", preco:44.90, foto:"img/presente.jpg", selo:"Pra presentear", brinde:"Vai na sacolinha rosa da Bites 🎁", camadas:["Sacola Bites","1 Milky","1 Salted Caramel","1 Pop Bites"]}
+  {id:"milky", texto:["O <b>Milky</b> é a queridinha da casa.","Pipoca crocante coberta com <b>chocolate branco</b> e finalizada com <b>leite em pó</b>. Doce na medida e crocante até o último pedacinho.","Pacote de <b>110g</b>. Difícil é comer um só."], nome:"Milky", vem:"1× 110g", desc:"Pipoca crocante coberta com chocolate branco e leite em pó. A queridinha da casa.", preco:14.90, foto:"img/pacote-milky.webp", reserva:"img/milky.jpg", recorte:true, selo:"Mais pedido", camadas:["Pipoca crocante","Chocolate branco","Leite em pó"]},
+  {id:"caramel", texto:["O <b>Salted Caramel</b> é pra quem gosta do doce com personalidade.","Pipoca crocante coberta com <b>caramelo</b> e uma <b>pitada de sal</b> que deixa tudo mais viciante.","Pacote de <b>110g</b>. Doce, salgadinho e impossível de parar."], nome:"Salted Caramel", vem:"1× 110g", desc:"Caramelo com um toque de sal. Doce, crocante e difícil de parar.", preco:14.90, foto:"img/pacote-caramel.webp", reserva:"img/caramel.jpg", recorte:true, camadas:["Pipoca crocante","Caramelo","Pitada de sal"]},
+  {id:"duo", monta:2, texto:["O <b>Duo Bites</b> é o jeito mais fácil de começar.","São <b>2 pacotes de 110g</b> pra você montar do seu jeito: um de cada ou dois do seu favorito, entre <b>Milky</b> e <b>Salted Caramel</b>.","Monte o seu e descubra o seu vício."], nome:"Duo Bites", vem:"2× 110g", desc:"1 Milky + 1 Salted Caramel. O único duo que a gente gosta.", preco:27.90, de:29.80, pacotes:2, foto:"img/celular.jpg", camadas:["1 Milky 110g","1 Salted Caramel 110g"]},
+  {id:"viciado", monta:4, texto:["O <b>Kit Viciado</b> é pra quem já sabe que um pacote nunca é suficiente.","São <b>4 unidades de 110g</b> com os sabores que você escolher: <b>Milky</b> e <b>Salted Caramel</b>, na proporção que quiser.","Pra dividir… ou não."], nome:"Kit Viciado", vem:"4× 110g", desc:"2 Milky + 2 Salted Caramel. Pra dividir… ou não.", preco:54.90, de:59.60, pacotes:4, foto:"img/duo.jpg", selo:"Mais vendido", camadas:["2 Milky 110g","2 Salted Caramel 110g"]},
+  {id:"presente", monta:2, texto:["O <b>Presente Bites</b> chega pronto pra entregar, na <b>sacolinha rosa da Bites</b>.","Você escolhe os <b>2 pacotes de 110g</b> e a gente completa com <b>1 pote Pop Bites</b>.","Um pedacinho de felicidade pra quem você gosta."], nome:"Presente Bites", vem:"2× 110g + 1 Pop Bites", desc:"Sacola rosa da Bites com 1 Milky, 1 Salted Caramel e 1 pote Pop Bites. Pronto pra entregar.", preco:44.90, foto:"img/presente.jpg", selo:"Pra presentear", brinde:"Vai na sacolinha rosa da Bites 🎁", camadas:["Sacola Bites","1 Milky","1 Salted Caramel","1 Pop Bites"]}
 ];
 const porId = Object.fromEntries(PRODUTOS.map(p => [p.id, p]));
+// sabores que dá pra escolher ao montar um kit
+const SABORES_KIT = ["milky", "caramel"];
+// cor da pipoca que cai quando aperta o + de cada sabor
+const COR_PIPOCA = {milky:"#FFF8EA", caramel:"#D9954A"};
 const $ = s => document.querySelector(s);
 const R = v => Sacola.preco(v);
 const esc = t => String(t).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
@@ -149,7 +154,7 @@ trilho.innerHTML = PRODUTOS.map((p, i) => `
           ${p.pacotes ? `<span class="kit-extra num">Cada pacote de 110g sai por ${R(Math.round(p.preco * 100 / p.pacotes) / 100)}</span>` : ""}
           ${p.brinde ? `<span class="kit-brinde">${p.brinde}</span>` : ""}
         </div>
-        <button class="kit-bt" data-add="${p.id}"><svg><use href="#i-sacola"/></svg> Adicionar à sacola</button>
+        ${p.monta ? `<a class="kit-bt" href="#/${p.id}">Escolher sabores</a>` : `<button class="kit-bt" data-add="${p.id}"><svg><use href="#i-sacola"/></svg> Adicionar à sacola</button>`}
       </div>
     </div>
   </div>`).join("");
@@ -166,7 +171,7 @@ function posicionarKits(){
     k.style.opacity = on ? 1 : d === 1 ? .58 : .22;
     k.classList.toggle("ativo", on);
     k.setAttribute("aria-hidden", on ? "false" : "true");
-    k.querySelectorAll("button").forEach(b => b.tabIndex = on ? 0 : -1);
+    k.querySelectorAll("button, a").forEach(b => b.tabIndex = on ? 0 : -1);
   });
   pilulas.forEach((b, i) => b.setAttribute("aria-selected", i === kitAtivo));
   $("#kits-prog").style.width = ((kitAtivo + 1) / PRODUTOS.length * 100) + "%";
@@ -341,42 +346,153 @@ document.querySelectorAll(".painel").forEach(p => {
   p.addEventListener("touchend", () => { if (y0 === null) return; p.style.transition = ""; p.style.transform = ""; if (dy > 110) fechar(); y0 = null; });
 });
 
-// ---------- produto ----------
-let atual = null, qtdAtual = 1;
-function abrirProduto(id){
-  const p = porId[id]; if (!p) return;
-  atual = p; qtdAtual = 1;
-  const f = $("#pp-foto");
-  if (p.reserva) f.dataset.reserva = p.reserva; else delete f.dataset.reserva;
+// ---------- página do produto / montar kit (como na MadNutz) ----------
+const pag = $("#pag");
+let prodAtual = null, escolha = {}, qtdAvulso = 1;
+const totalEscolhido = () => Object.values(escolha).reduce((t, n) => t + n, 0);
+function abrirPagina(id){
+  const p = porId[id]; if (!p) return false;
+  prodAtual = p; escolha = {}; qtdAvulso = 1;
+  const f = $("#pag-foto");
   f.classList.remove("foto");
-  f.parentElement.classList.toggle("recorte", !!p.recorte);
+  if (p.reserva) f.dataset.reserva = p.reserva; else delete f.dataset.reserva;
+  $("#pag-foto-caixa").classList.toggle("recorte", !!p.recorte);
   f.src = p.foto; f.alt = p.nome;
-  $("#pp-selo").textContent = p.selo || ""; $("#pp-selo").hidden = !p.selo;
-  $("#pp-nome").textContent = p.nome; $("#pp-desc").textContent = p.desc;
-  $("#pp-camadas").innerHTML = p.camadas.map(c => `<span>${c}</span>`).join("");
-  $("#pp-preco").innerHTML = R(p.preco) + (p.de ? ` <span style="font-size:15px;color:var(--tinta-2);text-decoration:line-through;font-weight:500">${R(p.de)}</span>` : "");
-  atualizaProduto(); abrir($("#p-prod"));
-  $("#p-prod .rola").scrollTop = 0;
+  $("#pag-nome").textContent = p.nome;
+  const selo = p.de ? `Economize ${R(p.de - p.preco)}` : (p.selo || "");
+  $("#pag-selo").textContent = selo; $("#pag-selo").hidden = !selo;
+  $("#pag-texto").innerHTML = (p.texto || [esc(p.desc)]).map(t => `<p>${t}</p>`).join("");
+  $("#pag-preco").innerHTML = (p.de ? `<span class="pag-de">De <s class="num">${R(p.de)}</s> por:</span>` : "") +
+    `<strong class="pag-por num">${R(p.preco)}</strong>` +
+    (p.pacotes ? `<span class="pag-cada num">Cada pacote de 110g sai por ${R(Math.round(p.preco * 100 / p.pacotes) / 100)}</span>` : `<span class="pag-cada">${esc(p.vem)}</span>`);
+  // linhas: sabores (kit) ou o próprio produto (avulso)
+  const linhas = p.monta ? SABORES_KIT.map(k => porId[k]) : [p];
+  $("#pag-sabores").innerHTML = linhas.map(s => `
+    <div class="pag-sabor" data-sabor="${s.id}">
+      <span class="pag-sabor-img"><img src="${s.foto}"${s.reserva ? ` data-reserva="${s.reserva}"` : ""} alt=""></span>
+      <span class="pag-sabor-nome"><b>${esc(p.monta ? s.nome + " 110g" : "Quantidade")}</b><small>${esc(p.monta ? "110g" : s.nome + " 110g")}</small></span>
+      <span class="pag-passo">
+        <button type="button" class="pag-menos" aria-label="Menos ${esc(s.nome)}">−</button>
+        <output class="num">0</output>
+        <button type="button" class="pag-mais" aria-label="Mais ${esc(s.nome)}">+</button>
+      </span>
+    </div>`).join("");
+  atualizaPagina();
+  document.body.classList.add("em-produto");
+  pag.hidden = false;
+  pag.classList.remove("entra"); void pag.offsetWidth; pag.classList.add("entra");
+  scrollTo(0, 0);
+  setTimeout(() => $("#pag-voltar").focus({preventScroll:true}), 50);
+  return true;
 }
-function atualizaProduto(){
-  $("#pp-qtd").textContent = qtdAtual;
-  $("#pp-menos").disabled = qtdAtual <= 1;
-  fxNumero("pp-soma", atual.preco * qtdAtual, R, 400);
+function fecharPagina(){
+  if (pag.hidden) return;
+  pag.hidden = true; document.body.classList.remove("em-produto"); prodAtual = null;
 }
-$("#pp-menos").onclick = () => { if (qtdAtual > 1) { qtdAtual--; atualizaProduto(); } };
-$("#pp-mais").onclick = () => { if (qtdAtual < 50) { qtdAtual++; atualizaProduto(); } };
-$("#pp-add").onclick = () => {
-  const alvo = alvoSacola(); // com o painel aberto, mira no botão do topo
-  fechar();
-  adicionar(atual, qtdAtual, $("#pp-foto"), alvo);
-};
+function atualizaPagina(){
+  const p = prodAtual; if (!p) return;
+  const bt = $("#pag-bt");
+  if (p.monta) {
+    const n = totalEscolhido(), falta = p.monta - n;
+    $("#pag-montar").classList.remove("avulso");
+    $("#pag-barra-txt").innerHTML = `110g: <b class="num">${n}/${p.monta}</b>`;
+    $("#pag-barra-fill").style.width = (n / p.monta * 100) + "%";
+    $("#pag-rotulo").textContent = `110g (${n}/${p.monta})`;
+    document.querySelectorAll(".pag-sabor").forEach(l => {
+      const q = escolha[l.dataset.sabor] || 0;
+      l.querySelector("output").textContent = q;
+      l.classList.toggle("tem", q > 0);
+      l.querySelector(".pag-menos").disabled = q === 0;
+      l.querySelector(".pag-mais").disabled = falta === 0;
+    });
+    bt.disabled = falta > 0;
+    bt.textContent = falta > 0 ? `Faltam ${falta}×110g` : `Adicionar à sacola · ${R(p.preco)}`;
+  } else {
+    $("#pag-montar").classList.add("avulso");
+    const l = document.querySelector(".pag-sabor");
+    l.querySelector("output").textContent = qtdAvulso;
+    l.classList.add("tem");
+    l.querySelector(".pag-menos").disabled = qtdAvulso <= 1;
+    l.querySelector(".pag-mais").disabled = qtdAvulso >= 50;
+    bt.disabled = false;
+    bt.textContent = `Adicionar à sacola · ${R(p.preco * qtdAvulso)}`;
+  }
+  bt.classList.toggle("pronto", !bt.disabled);
+}
+// chuva de pipocas pela tela a cada "+"
+function chuvaPipocas(cor){
+  if (fxReduz) return;
+  const W = innerWidth, H = innerHeight;
+  for (let i = 0; i < 16; i++) {
+    const s = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+    s.setAttribute("viewBox", "0 0 40 36"); s.setAttribute("class", "chuva");
+    const tam = 26 + Math.random() * 30;
+    s.style.width = tam + "px"; s.style.height = tam * .9 + "px";
+    s.style.color = Math.random() < .8 ? cor : "#FFF8EA";
+    s.innerHTML = '<use href="#pip"/>';
+    document.body.append(s);
+    const x = Math.random() * (W - tam), deriva = (Math.random() - .5) * 160, rot = (Math.random() - .5) * 540;
+    const y0 = -tam - Math.random() * 120;
+    s.animate([
+      {transform:`translate(${x}px,${y0}px) rotate(0deg)`, opacity:0},
+      {opacity:1, offset:.08},
+      {transform:`translate(${x + deriva}px,${H + 40}px) rotate(${rot}deg)`, opacity:1}
+    ], {duration:1300 + Math.random() * 1100, delay:Math.random() * 260, easing:"cubic-bezier(.45,.05,.75,.6)", fill:"forwards"}).onfinish = () => s.remove();
+  }
+}
+$("#pag-sabores").addEventListener("click", e => {
+  const b = e.target.closest("button"); if (!b || b.disabled || !prodAtual) return;
+  const linha = b.closest(".pag-sabor"), sab = linha.dataset.sabor, mais = b.classList.contains("pag-mais");
+  if (prodAtual.monta) {
+    const q = escolha[sab] || 0;
+    if (mais && totalEscolhido() < prodAtual.monta) escolha[sab] = q + 1;
+    else if (!mais && q > 0) escolha[sab] = q - 1;
+    else return;
+  } else {
+    if (mais && qtdAvulso < 50) qtdAvulso++; else if (!mais && qtdAvulso > 1) qtdAvulso--; else return;
+  }
+  if (mais) {
+    chuvaPipocas(COR_PIPOCA[sab] || "#FFF8EA");
+    const o = linha.querySelector("output"); o.classList.remove("pula"); void o.offsetWidth; o.classList.add("pula");
+  }
+  atualizaPagina();
+});
+$("#pag-bt").addEventListener("click", () => {
+  const p = prodAtual; if (!p || $("#pag-bt").disabled) return;
+  if (p.monta) {
+    const partes = SABORES_KIT.filter(k => escolha[k]).map(k => [porId[k].nome, escolha[k]]);
+    const detalhe = partes.map(([nome, q]) => q + "x " + nome).join(" + ");
+    adicionar({id: p.id + "|" + detalhe, nome: p.nome, preco: p.preco, detalhe}, 1, $("#pag-bt"));
+    escolha = {};
+  } else {
+    adicionar(p, qtdAvulso, $("#pag-bt"));
+    qtdAvulso = 1;
+  }
+  atualizaPagina();
+});
+$("#pag-voltar").addEventListener("click", () => { location.hash = "produtos"; });
+function rota(){
+  const m = location.hash.match(/^#\/([\w-]+)/);
+  if (m && abrirPagina(m[1])) return;
+  const estava = !pag.hidden;
+  fecharPagina();
+  if (estava) { const alvo = location.hash.length > 1 && document.getElementById(location.hash.slice(1)); requestAnimationFrame(() => { posicionarKits(); if (alvo) fxRolarAte(alvo); }); }
+}
+addEventListener("hashchange", rota);
+// clicar num link do menu com a página aberta: fecha a página antes de rolar
+document.addEventListener("click", e => {
+  const a = e.target.closest('a[href^="#"]');
+  if (!a || pag.hidden || a.getAttribute("href").startsWith("#/")) return;
+  fecharPagina(); history.replaceState(null, "", location.pathname + location.search);
+  posicionarKits();
+}, true);
 
 document.addEventListener("click", e => {
   const add = e.target.closest("[data-add]");
   if (add) { e.stopPropagation(); adicionar(porId[add.dataset.add], 1, add); return; }
   const it = e.target.closest("[data-abre]");
   if (it && it.closest(".kit:not(.ativo)")) return;
-  if (it) abrirProduto(it.dataset.abre);
+  if (it) location.hash = "#/" + it.dataset.abre;
 });
 
 // ---------- colocar na sacola: pipocas voam, a sacola "engole", o número pula ----------
@@ -457,10 +573,10 @@ function desenharSacola(){
   const vazia = n === 0;
   $("#sac-vazia").hidden = !vazia; $("#form").hidden = vazia; $("#sac-pe").hidden = vazia;
   $("#sac-lista").innerHTML = sacola.itens.map(i => {
-    const p = porId[i.id];
+    const p = porId[i.id.split("|")[0]];
     return `<div class="sac-item" data-id="${esc(i.id)}">
       <img src="${p ? p.foto : "img/milky.jpg"}"${p && p.reserva ? ` data-reserva="${p.reserva}"` : ""} alt="">
-      <div><b>${esc(i.nome)}</b><small class="num">${R(i.preco)} cada · ${R(i.preco * i.qtd)}</small></div>
+      <div><b>${esc(i.nome)}</b>${i.detalhe ? `<small class="sac-det">${esc(i.detalhe)}</small>` : ""}<small class="num">${R(i.preco)} cada · ${R(i.preco * i.qtd)}</small></div>
       <div class="passo"><button data-menos aria-label="Tirar um ${esc(i.nome)}">−</button><output class="num">${i.qtd}</output><button data-mais aria-label="Mais um ${esc(i.nome)}">+</button></div>
     </div>`;
   }).join("");
@@ -525,26 +641,36 @@ $("#contato-form").addEventListener("submit", e => {
 // ---------- hero: o pacote ----------
 const pacote = $("#pacote");
 fxLetras($("#hero-titulo"), .5);
-setTimeout(() => pacote.classList.add("balanca"), fxReduz ? 0 : 1300);
+// cai uma vez só na entrada; depois fica balançando
+function comecaBalanco(){ pacote.classList.remove("caindo"); pacote.classList.add("balanca"); }
+pacote.addEventListener("animationend", e => { if (e.animationName === "cai") comecaBalanco(); });
+setTimeout(() => { if (pacote.classList.contains("caindo")) comecaBalanco(); }, 2500); // garantia se o animationend não vier
 let estourando = false;
 pacote.addEventListener("click", () => {
-  if (estourando) return; estourando = true;
+  if (estourando || pacote.classList.contains("caindo")) return;
+  estourando = true;
   $("#dica").classList.add("some");
-  pacote.classList.remove("balanca"); pacote.classList.add("aberto");
+  pacote.classList.remove("balanca");
+  void pacote.offsetWidth;
+  pacote.classList.add("aberto", "estoura");
   const est = $("#estouro");
-  if (!fxReduz) for (let i = 0; i < 18; i++) {
+  if (!fxReduz) for (let i = 0; i < 26; i++) {
     const s = document.createElementNS("http://www.w3.org/2000/svg", "svg");
     s.setAttribute("viewBox", "0 0 40 36"); if (i % 3 === 0) s.classList.add("car");
+    const tam = 24 + Math.random() * 22;
+    s.style.width = tam + "px"; s.style.height = tam * .9 + "px"; s.style.left = -tam / 2 + "px"; s.style.top = -tam / 2 + "px";
     s.innerHTML = '<use href="#pip"/>'; est.append(s);
-    const ang = (-165 + Math.random() * 150) * Math.PI / 180, dist = 130 + Math.random() * 180;
+    const ang = (-170 + Math.random() * 160) * Math.PI / 180, dist = 150 + Math.random() * 230;
     const dx = Math.cos(ang) * dist, dy = Math.sin(ang) * dist;
     s.animate([
-      {transform:"translate(0,20px) scale(.4)", opacity:0},
-      {transform:`translate(${dx * .6}px,${dy}px) scale(1.2) rotate(${Math.random() * 300}deg)`, opacity:1, offset:.45},
-      {transform:`translate(${dx}px,${dy + 300}px) scale(1) rotate(${Math.random() * 600}deg)`, opacity:0}
-    ], {duration:1300 + Math.random() * 500, delay:120 + i * 25, easing:"cubic-bezier(.2,.6,.4,1)", fill:"forwards"}).onfinish = () => s.remove();
+      {transform:"translate(0,30px) scale(.3)", opacity:0},
+      {transform:`translate(${dx * .55}px,${dy}px) scale(1.15) rotate(${Math.random() * 300}deg)`, opacity:1, offset:.4},
+      {transform:`translate(${dx}px,${dy + 420}px) scale(1) rotate(${Math.random() * 640}deg)`, opacity:0}
+    ], {duration:1500 + Math.random() * 600, delay:140 + i * 18, easing:"cubic-bezier(.2,.6,.4,1)", fill:"forwards"}).onfinish = () => s.remove();
   }
-  // fecha de novo pra poder estourar outra vez
-  setTimeout(() => { pacote.classList.remove("aberto"); }, 1500);
-  setTimeout(() => { pacote.classList.add("balanca"); estourando = false; }, 2400);
+  // a tampa volta e o pacote volta a balançar
+  setTimeout(() => pacote.classList.remove("aberto"), 1600);
+  setTimeout(() => { pacote.classList.remove("estoura"); pacote.classList.add("balanca"); estourando = false; }, 2500);
 });
+
+rota();

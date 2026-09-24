@@ -41,7 +41,7 @@
   <!-- ============ HERO ============ -->
   <section class="hero">
     <div class="hero-mascote">
-      <button class="pacote" id="pacote" aria-label="Abrir o pacote">
+      <button class="pacote caindo" id="pacote" aria-label="Abrir o pacote">
         <svg viewBox="0 0 200 262" aria-hidden="true">
           <defs>
             <pattern id="lst" width="22" height="10" patternUnits="userSpaceOnUse"><rect width="11" height="10" fill="#E9418B"/><rect x="11" width="11" height="10" fill="#F46AA6"/></pattern>
@@ -97,7 +97,7 @@
       </div>
       <div class="sobre-linha">
         <div class="sobre-img primeiro" data-revela="zoom">
-          <img class="img-bandeja" src="img/piramide.jpg" data-reserva="img/revista.jpg" alt="Pirâmide de pipocas Bites cobertas com chocolate branco">
+          <img class="img-bandeja" src="img/piramide.webp" data-reserva="img/revista.jpg" alt="Pirâmide de pipocas Bites cobertas com chocolate branco">
         </div>
         <div class="sobre-txt ultimo" data-revela="lado">
           <h2>Feita pra quem não para no primeiro</h2>
@@ -186,6 +186,29 @@
   </section>
 </main>
 
+<!-- ============ PÁGINA DO PRODUTO (montar kit) ============ -->
+<section class="pag" id="pag" hidden aria-labelledby="pag-nome">
+  <div class="pag-caixa">
+    <button class="pag-voltar" id="pag-voltar" type="button">← Voltar</button>
+    <div class="pag-grade">
+      <div class="pag-esq">
+        <div class="pag-foto" id="pag-foto-caixa"><img id="pag-foto" src="" alt=""></div>
+        <div class="pag-texto" id="pag-texto"></div>
+      </div>
+      <div class="pag-dir">
+        <div class="pag-titulo"><h1 id="pag-nome"></h1><span class="pag-selo" id="pag-selo"></span></div>
+        <div class="pag-preco" id="pag-preco"></div>
+        <div class="pag-montar" id="pag-montar">
+          <div class="pag-barra"><i id="pag-barra-fill"></i><span id="pag-barra-txt"></span></div>
+          <div class="pag-rotulo" id="pag-rotulo"></div>
+          <div class="pag-sabores" id="pag-sabores"></div>
+        </div>
+        <button class="pag-bt" id="pag-bt" type="button" disabled></button>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ============ RODAPÉ ============ -->
 <footer class="rodape">
   <div class="caixa rodape-grade">
@@ -232,25 +255,6 @@
 <button class="barra-sacola" id="barra-sacola" aria-label="Ver sacola"><span class="qt num" id="bs-qt">0</span> Ver sacola <span class="vr num" id="bs-total">R$ 0,00</span></button>
 
 <div class="veu" id="veu"></div>
-
-<section class="painel" id="p-prod" role="dialog" aria-modal="true" aria-labelledby="pp-nome" hidden>
-  <div class="alca"></div>
-  <button class="fecha" data-fecha aria-label="Fechar">×</button>
-  <div class="rola">
-    <div class="prod-foto"><img id="pp-foto" src="" alt=""></div>
-    <div class="prod-txt">
-      <span class="selo" id="pp-selo"></span>
-      <h3 id="pp-nome"></h3>
-      <p id="pp-desc"></p>
-      <div class="camadas" id="pp-camadas"></div>
-      <div class="preco num" id="pp-preco"></div>
-    </div>
-  </div>
-  <div class="pe linha-add">
-    <div class="passo"><button id="pp-menos" aria-label="Menos">−</button><output id="pp-qtd" class="num">1</output><button id="pp-mais" aria-label="Mais">+</button></div>
-    <button class="bt" id="pp-add">Adicionar · <span class="num" id="pp-soma"></span></button>
-  </div>
-</section>
 
 <section class="painel" id="p-sacola" role="dialog" aria-modal="true" aria-labelledby="sac-t" hidden>
   <div class="alca"></div>
