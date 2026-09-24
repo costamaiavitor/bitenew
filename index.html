@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Bites — Pipoca coberta</title>
+<meta name="description" content="Bites: pipoca gourmet coberta, Milky e Salted Caramel. Peça pelo WhatsApp em Fortaleza.">
+<meta name="theme-color" content="#E9418B">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Gantari:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="pip" viewBox="0 0 40 36"><g fill="currentColor"><circle cx="12" cy="20" r="9"/><circle cx="21" cy="12" r="10"/><circle cx="29" cy="21" r="9"/><circle cx="19" cy="25" r="9.5"/></g><path d="M13 17q3-3 6-1M23 9q3-1 5 2M24 24q3 2 6 0" stroke="rgba(120,60,20,.22)" fill="none" stroke-width="1.8" stroke-linecap="round"/></symbol>
+  <symbol id="i-sacola" viewBox="0 0 24 24"><path d="M5 8h14l-1 12H6L5 8Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M9 10V7a3 3 0 0 1 6 0v3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+  <symbol id="i-seta" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-insta" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.3" cy="6.7" r="1.3" fill="currentColor"/></symbol>
+  <symbol id="i-tiktok" viewBox="0 0 24 24"><path fill="currentColor" d="M16.6 3c.4 2.2 1.8 3.7 4 3.9v3.1a7.4 7.4 0 0 1-4-1.3v6.4c0 3.4-2.6 5.9-5.8 5.9A5.8 5.8 0 0 1 5 15.2c0-3.6 3.2-6.3 6.8-5.7v3.2c-1.7-.4-3.6.7-3.6 2.5 0 1.5 1.2 2.6 2.6 2.6 1.6 0 2.7-1.1 2.7-3V3h3.1Z"/></symbol>
+  <symbol id="i-zap" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2c-1.6 0-3.1-.4-4.4-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.4.1-.6.3-.2.2-.8.8-.8 2s.8 2.3.9 2.5c.1.2 1.6 2.5 4 3.5 1.5.6 2 .7 2.8.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.1-1.2l-.4-.2Z"/></symbol>
+</svg>
+
+<!-- ============ HEADER ============ -->
+<header class="topo" id="topo">
+  <div class="caixa topo-l">
+    <a class="logo" href="#inicio" aria-label="Bites, voltar ao início"><img src="img/logo.png" alt="Bites" data-sem-logo></a>
+    <nav class="menu" aria-label="Principal">
+      <a href="#inicio">Início</a>
+      <a href="#quem-somos">Quem somos</a>
+      <a href="#produtos">Produtos</a>
+      <a href="#contato">Fale conosco</a>
+    </nav>
+    <button class="bt-sacola" id="bt-sacola" aria-label="Abrir sacola"><svg><use href="#i-sacola"/></svg><span class="badge num" id="badge">0</span></button>
+  </div>
+</header>
+
+<main id="inicio">
+  <!-- ============ HERO ============ -->
+  <section class="hero">
+    <div class="hero-mascote">
+      <button class="pacote" id="pacote" aria-label="Abrir o pacote">
+        <svg viewBox="0 0 200 262" aria-hidden="true">
+          <defs>
+            <pattern id="lst" width="22" height="10" patternUnits="userSpaceOnUse"><rect width="11" height="10" fill="#E9418B"/><rect x="11" width="11" height="10" fill="#F46AA6"/></pattern>
+            <clipPath id="corpo-clip"><path d="M14 40h172l8 210q0 8-8 8H14q-8 0-8-8Z"/></clipPath>
+          </defs>
+          <g clip-path="url(#corpo-clip)">
+            <rect x="0" y="36" width="200" height="226" fill="url(#lst)"/>
+            <path d="M140 36q16 18 44 10q10 16 20 12V36Z" fill="#BFE3F5"/>
+            <path d="M0 226q20-10 34 4q14-8 26 8q10 4 12 24H0Z" fill="#BFE3F5"/>
+            <rect x="44" y="150" width="112" height="70" rx="10" fill="#FFF6EC" stroke="#fff" stroke-width="4"/>
+            <g color="#FFF3DC"><use href="#pip" x="50" y="170" width="30" height="27"/><use href="#pip" x="74" y="160" width="32" height="29"/><use href="#pip" x="100" y="172" width="30" height="27"/><use href="#pip" x="122" y="160" width="30" height="27"/><use href="#pip" x="60" y="190" width="30" height="27"/><use href="#pip" x="92" y="192" width="30" height="27"/><use href="#pip" x="120" y="190" width="30" height="27"/></g>
+            <path d="M14 40h172v8H14z" fill="rgba(0,0,0,.08)"/>
+          </g>
+          <ellipse cx="100" cy="108" rx="62" ry="30" fill="#fff" stroke="#C4246B" stroke-width="3"/>
+          <text x="100" y="121" text-anchor="middle" font-family="Anton, Impact, sans-serif" font-size="34" fill="#E9418B" letter-spacing="3">BITES</text>
+          <text x="100" y="146" text-anchor="middle" font-family="Anton, Impact, sans-serif" font-size="7.4" fill="#fff" letter-spacing=".5">UM PEDACINHO DE FELICIDADE</text>
+          <g class="tampa">
+            <path d="M14 8h172l0 32H14Z" fill="url(#lst)"/>
+            <path d="M14 8l7-6 7 6 7-6 7 6 7-6 7 6 7-6 7 6 7-6 7 6 7-6 7 6 7-6 7 6 7-6 7 6 7-6 7 6 7-6 7 6 7-6 7 6 7-6 7 6 7-6H14Z" fill="#F46AA6"/>
+            <path d="M14 40l6 -4 6 4 6-4 6 4 6-4 6 4 6-4 6 4 6-4 6 4 6-4 6 4 6-4 6 4 6-4 6 4 6-4 6 4 6-4 6 4 6-4 6 4 6-4 6 4 6-4 6 4 6-4 6 4" fill="none" stroke="#fff" stroke-width="1.5" stroke-dasharray="3 3"/>
+          </g>
+        </svg>
+        <div class="estouro" id="estouro"></div>
+      </button>
+      <img class="ovelha-selo" src="img/ovelha.jpg" alt="Ovelhinha da Bites abraçando uma tigela de pipoca" width="710" height="540">
+      <span class="dica" id="dica" aria-hidden="true">toca no pacote!</span>
+    </div>
+
+    <h1 class="hero-titulo" id="hero-titulo">Só mais um pedacinho, tá?</h1>
+
+    <a href="#produtos" class="hero-bt-mobile">Garanta o seu!</a>
+
+    <div class="ticker" aria-hidden="true">
+      <div class="ticker-trilho">
+        <span>Seu novo vício favorito • Crocância • Doce na medida • Zero tédio •&nbsp;</span><span>Seu novo vício favorito • Crocância • Doce na medida • Zero tédio •&nbsp;</span><span>Seu novo vício favorito • Crocância • Doce na medida • Zero tédio •&nbsp;</span><span>Seu novo vício favorito • Crocância • Doce na medida • Zero tédio •&nbsp;</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ QUEM SOMOS ============ -->
+  <section id="quem-somos" class="sobre">
+    <div class="sobre-caixa">
+      <div class="sobre-linha">
+        <div class="sobre-txt" data-revela="lado">
+          <svg class="sobre-estrela" viewBox="0 0 40 36" aria-hidden="true"><use href="#pip"/></svg>
+          <h2>Não é só pipoca.<br>É Bites: doce, crocante,<br>impossível de parar</h2>
+          <p>Bites é pra quem não aceita pipoca sem graça. Se a de sempre já não te satisfaz, você acabou de achar outra coisa. <span class="dest-txt">Mais crocante. Mais coberta. Muito mais viciante.</span></p>
+        </div>
+        <div class="sobre-img sobre-img-cta" data-revela="zoom">
+          <img class="img-pacote" src="img/pacote-milky.png" data-reserva="img/milky-rosa.jpg" alt="Pacote Bites sabor Milky 110g">
+          <a href="#produtos" class="sobre-bt-mobile">Vem experimentar!</a>
+        </div>
+      </div>
+      <div class="sobre-linha">
+        <div class="sobre-img primeiro" data-revela="zoom">
+          <img class="img-bandeja" src="img/piramide.jpg" data-reserva="img/revista.jpg" alt="Pirâmide de pipocas Bites cobertas com chocolate branco">
+        </div>
+        <div class="sobre-txt ultimo" data-revela="lado">
+          <h2>Feita pra quem não para no primeiro</h2>
+          <p>Esquece o que você achava que era pipoca. <span class="dest-txt">Bites não nasceu pra ser só mais um docinho.</span> Chega do murcho, do sem graça, do que não dá vontade de pegar outro.</p>
+          <p>Aqui é <span class="dest-txt">crocância com cobertura de verdade</span>, feita em Fortaleza, um pedacinho de cada vez. <span class="dest-txt">Experimenta</span> e descobre por que, depois de Bites, a pipoca comum não basta.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ MOMENTOS ============ -->
+  <section class="momentos">
+    <img src="img/pacote-caramel.png" data-reserva="img/caramel-rosa.jpg" alt="" aria-hidden="true" class="momentos-lado momentos-esq">
+    <img src="img/pacote-milky.png" data-reserva="img/milky-rosa.jpg" alt="" aria-hidden="true" class="momentos-lado momentos-dir">
+    <div class="momentos-txt">
+      <h2>Adoçando todos<br>os seus momentos</h2>
+      <p>Esquece a pipoca comum. Bites transforma qualquer pausa em um pedacinho de felicidade.</p>
+      <a href="#produtos" class="momentos-bt">Monte o seu kit!</a>
+    </div>
+    <div class="onda" aria-hidden="true">
+      <svg viewBox="0 0 1440 70" preserveAspectRatio="none"><path d="M0,40 C240,80 480,0 720,40 C960,80 1200,0 1440,40 L1440,70 L0,70 Z"/></svg>
+    </div>
+  </section>
+
+  <!-- ============ FAIXA ============ -->
+  <section class="faixa-sabores">explore todos os sabores — 100% crocância, 0% vontade de dividir!</section>
+
+  <!-- ============ PRODUTOS (carrossel) ============ -->
+  <section id="produtos" class="kits">
+    <div class="kits-prog"><div class="kits-prog-fill" id="kits-prog"></div></div>
+    <div class="kits-brilho" aria-hidden="true"></div>
+    <div class="kits-dentro">
+      <div class="kits-cab">
+        <p class="kits-sobrelinha">Escolha o seu</p>
+        <h2 class="kits-titulo">Nossos produtos</h2>
+      </div>
+      <div class="carrossel" id="carrossel">
+        <div class="carrossel-janela">
+          <div class="carrossel-trilho" id="trilho"></div>
+        </div>
+        <button class="carrossel-seta ant" id="kit-ant" aria-label="Anterior"><svg><use href="#i-seta"/></svg></button>
+        <button class="carrossel-seta prox" id="kit-prox" aria-label="Próximo"><svg><use href="#i-seta"/></svg></button>
+      </div>
+      <div class="kits-pilulas" id="kits-pilulas" role="tablist" aria-label="Escolher produto"></div>
+    </div>
+  </section>
+
+  <!-- ============ CONTATO ============ -->
+  <section id="contato" class="contato">
+    <div class="contato-grade">
+      <div class="contato-img">
+        <img src="img/pacotes-escuro.jpg" data-reserva="img/duo.jpg" alt="Pacotes Bites Milky e Salted Caramel com pipocas cobertas" loading="lazy">
+      </div>
+      <div class="contato-col">
+        <h2>Curtiu? Então não fica no primeiro.</h2>
+        <p class="contato-desc">Fala com a gente. Dúvida, encomenda ou só vontade de provar? A Bites responde.</p>
+        <div class="contato-form-caixa">
+          <form class="contato-form" id="contato-form">
+            <div class="form-linha-2">
+              <label>Nome completo<input id="c-nome" autocomplete="name" placeholder="Digite seu nome" required></label>
+              <label>Bairro<input id="c-bairro" autocomplete="address-level3" placeholder="Onde você está?"></label>
+            </div>
+            <label>Mensagem<textarea id="c-msg" rows="4" placeholder="Digite seu texto aqui" required></textarea></label>
+            <button type="submit" class="contato-enviar">Enviar</button>
+          </form>
+        </div>
+        <p class="contato-nota">Envie sua mensagem que ela chega direto no nosso WhatsApp!</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- ============ RODAPÉ ============ -->
+<footer class="rodape">
+  <div class="caixa rodape-grade">
+    <div class="rodape-marca">
+      <a href="#inicio" class="rodape-logo" aria-label="Bites"><img src="img/logo.png" alt="Bites" data-sem-logo></a>
+      <div class="redes">
+        <a href="https://www.instagram.com/bitesbr_/" target="_blank" rel="noopener" aria-label="Instagram"><svg><use href="#i-insta"/></svg></a>
+        <a href="https://www.tiktok.com/@bites.oficial" target="_blank" rel="noopener" aria-label="TikTok"><svg><use href="#i-tiktok"/></svg></a>
+      </div>
+    </div>
+    <div class="rodape-col">
+      <h3>Contato</h3>
+      <ul>
+        <li><a class="link-zap" href="#" target="_blank" rel="noopener">WhatsApp</a></li>
+        <li><a href="https://www.instagram.com/bitesbr_/" target="_blank" rel="noopener">@bitesbr_</a></li>
+      </ul>
+    </div>
+    <div class="rodape-col">
+      <h3>Sobre</h3>
+      <ul>
+        <li><a href="#quem-somos">Quem somos</a></li>
+        <li><a href="#produtos">Nossos produtos</a></li>
+      </ul>
+    </div>
+    <div class="rodape-col">
+      <h3>Onde tem</h3>
+      <ul>
+        <li><span>CC da Unifor</span></li>
+        <li><span>Farmácias Santa Cecília</span></li>
+        <li><span>Entregas em Fortaleza</span></li>
+      </ul>
+    </div>
+  </div>
+  <div class="rodape-base">
+    <div class="caixa rodape-base-l">
+      <span>© 2026 Bites. Todos os direitos reservados.</span>
+      <span>Fortaleza, CE · Um pedacinho de felicidade</span>
+    </div>
+  </div>
+</footer>
+
+<a class="zap-flutua link-zap" href="#" target="_blank" rel="noopener" aria-label="Fale conosco no WhatsApp"><svg><use href="#i-zap"/></svg></a>
+
+<button class="barra-sacola" id="barra-sacola" aria-label="Ver sacola"><span class="qt num" id="bs-qt">0</span> Ver sacola <span class="vr num" id="bs-total">R$ 0,00</span></button>
+
+<div class="veu" id="veu"></div>
+
+<section class="painel" id="p-prod" role="dialog" aria-modal="true" aria-labelledby="pp-nome" hidden>
+  <div class="alca"></div>
+  <button class="fecha" data-fecha aria-label="Fechar">×</button>
+  <div class="rola">
+    <div class="prod-foto"><img id="pp-foto" src="" alt=""></div>
+    <div class="prod-txt">
+      <span class="selo" id="pp-selo"></span>
+      <h3 id="pp-nome"></h3>
+      <p id="pp-desc"></p>
+      <div class="camadas" id="pp-camadas"></div>
+      <div class="preco num" id="pp-preco"></div>
+    </div>
+  </div>
+  <div class="pe linha-add">
+    <div class="passo"><button id="pp-menos" aria-label="Menos">−</button><output id="pp-qtd" class="num">1</output><button id="pp-mais" aria-label="Mais">+</button></div>
+    <button class="bt" id="pp-add">Adicionar · <span class="num" id="pp-soma"></span></button>
+  </div>
+</section>
+
+<section class="painel" id="p-sacola" role="dialog" aria-modal="true" aria-labelledby="sac-t" hidden>
+  <div class="alca"></div>
+  <button class="fecha" data-fecha aria-label="Fechar">×</button>
+  <div class="rola">
+    <h2 class="sac-titulo" id="sac-t">Sua sacola</h2>
+    <div id="sac-lista"></div>
+    <div class="sac-vazia" id="sac-vazia" hidden>
+      <img src="img/ovelha.jpg" alt="Ovelhinha da Bites abraçando uma tigela de pipoca">
+      <b>Sacola vazia</b>
+      <p>A ovelhinha tá guardando as pipocas pra você.</p>
+      <button class="bt" data-fecha data-ir="produtos" style="max-width:240px;margin:0 auto">Ver os produtos</button>
+    </div>
+    <form class="form" id="form" hidden>
+      <label>Seu nome<input id="f-nome" autocomplete="name" placeholder="Como te chamamos?" required></label>
+      <div class="modo" id="modo" role="group" aria-label="Entrega ou retirada"><span class="pilula"></span><button type="button" data-modo="entrega" aria-pressed="true">Entrega</button><button type="button" data-modo="retirada" aria-pressed="false">Retirada</button></div>
+      <div class="campo-end" id="campo-end"><label>Endereço<input id="f-end" autocomplete="street-address" placeholder="Rua, número e bairro"></label></div>
+      <label><span>Observação <small style="font-weight:500;color:var(--tinta-2)">(opcional)</small></span><textarea id="f-obs" rows="2" placeholder="Ex.: é pra presente 🎁"></textarea></label>
+    </form>
+  </div>
+  <div class="pe" id="sac-pe" hidden>
+    <div class="total"><span>Total</span><b class="num" id="sac-total">R$ 0,00</b></div>
+    <a class="bt zap" id="bt-pedir" href="#" target="_blank" rel="noopener" aria-disabled="true"><svg width="20" height="20"><use href="#i-zap"/></svg> Pedir no WhatsApp</a>
+    <p class="aviso" id="aviso">Coloque seu nome pra enviar.</p>
+  </div>
+</section>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="sacola.js"></script>
+<script src="site.js"></script>
+</body>
+</html>
