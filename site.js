@@ -116,8 +116,8 @@ const PONTOS = [
 // monta: quantos pacotes a pessoa escolhe na página do kit (sabores de SABORES_KIT)
 // recorte: foto de pacote sem fundo (fica inteira no card, como no modelo)
 const PRODUTOS = [
-  {id:"milky", texto:["O <b>Milky</b> é a queridinha da casa.","Pipoca crocante coberta com <b>chocolate branco</b> e finalizada com <b>leite em pó</b>. Doce na medida e crocante até o último pedacinho.","Pacote de <b>110g</b>. Difícil é comer um só."], nome:"Milky", vem:"1× 110g", desc:"Pipoca crocante coberta com chocolate branco e leite em pó. A queridinha da casa.", preco:14.90, foto:"img/pacote-milky.webp", reserva:"img/milky.jpg", recorte:true, selo:"Mais pedido", camadas:["Pipoca crocante","Chocolate branco","Leite em pó"]},
-  {id:"caramel", texto:["O <b>Salted Caramel</b> é pra quem gosta do doce com personalidade.","Pipoca crocante coberta com <b>caramelo</b> e uma <b>pitada de sal</b> que deixa tudo mais viciante.","Pacote de <b>110g</b>. Doce, salgadinho e impossível de parar."], nome:"Salted Caramel", vem:"1× 110g", desc:"Caramelo com um toque de sal. Doce, crocante e difícil de parar.", preco:14.90, foto:"img/pacote-caramel.webp", reserva:"img/caramel.jpg", recorte:true, camadas:["Pipoca crocante","Caramelo","Pitada de sal"]},
+  {id:"milky", texto:["O <b>Milky</b> é a queridinha da casa.","Pipoca crocante coberta com <b>chocolate branco</b> e finalizada com <b>leite em pó</b>. Doce na medida e crocante até o último pedacinho.","Pacote de <b>110g</b>. Difícil é comer um só."], nome:"Milky", vem:"1× 110g", desc:"Pipoca crocante coberta com chocolate branco e leite em pó. A queridinha da casa.", preco:14.90, foto:"img/giro/milky-frente.webp", reserva:"img/milky.jpg", recorte:true, giro:"milky", selo:"Mais pedido", camadas:["Pipoca crocante","Chocolate branco","Leite em pó"]},
+  {id:"caramel", texto:["O <b>Salted Caramel</b> é pra quem gosta do doce com personalidade.","Pipoca crocante coberta com <b>caramelo</b> e uma <b>pitada de sal</b> que deixa tudo mais viciante.","Pacote de <b>110g</b>. Doce, salgadinho e impossível de parar."], nome:"Salted Caramel", vem:"1× 110g", desc:"Caramelo com um toque de sal. Doce, crocante e difícil de parar.", preco:14.90, foto:"img/giro/caramel-frente.webp", reserva:"img/caramel.jpg", recorte:true, giro:"caramel", camadas:["Pipoca crocante","Caramelo","Pitada de sal"]},
   {id:"duo", monta:2, texto:["O <b>Duo Bites</b> é o jeito mais fácil de começar.","São <b>2 pacotes de 110g</b> pra você montar do seu jeito: um de cada ou dois do seu favorito, entre <b>Milky</b> e <b>Salted Caramel</b>.","Monte o seu e descubra o seu vício."], nome:"Duo Bites", vem:"2× 110g", desc:"1 Milky + 1 Salted Caramel. O único duo que a gente gosta.", preco:27.90, de:29.80, pacotes:2, foto:"img/celular.jpg", camadas:["1 Milky 110g","1 Salted Caramel 110g"]},
   {id:"viciado", monta:4, texto:["O <b>Kit Viciado</b> é pra quem já sabe que um pacote nunca é suficiente.","São <b>4 unidades de 110g</b> com os sabores que você escolher: <b>Milky</b> e <b>Salted Caramel</b>, na proporção que quiser.","Pra dividir… ou não."], nome:"Kit Viciado", vem:"4× 110g", desc:"2 Milky + 2 Salted Caramel. Pra dividir… ou não.", preco:54.90, de:59.60, pacotes:4, foto:"img/duo.jpg", selo:"Mais vendido", camadas:["2 Milky 110g","2 Salted Caramel 110g"]},
   {id:"presente", monta:2, texto:["O <b>Presente Bites</b> chega pronto pra entregar, na <b>sacolinha rosa da Bites</b>.","Você escolhe os <b>2 pacotes de 110g</b> entre <b>Milky</b> e <b>Salted Caramel</b>, e a gente entrega tudo embaladinho.","Um pedacinho de felicidade pra quem você gosta."], nome:"Presente Bites", vem:"2× 110g + sacolinha", desc:"Sacola rosa da Bites com 2 pacotes à sua escolha. Pronto pra entregar.", preco:44.90, foto:"img/presente.jpg", selo:"Pra presentear", brinde:"Vai na sacolinha rosa da Bites 🎁", camadas:["Sacola Bites","2 pacotes de 110g"]}
@@ -346,6 +346,69 @@ document.querySelectorAll(".painel").forEach(p => {
   p.addEventListener("touchend", () => { if (y0 === null) return; p.style.transition = ""; p.style.transform = ""; if (dy > 110) fechar(); y0 = null; });
 });
 
+// ---------- caixa 3D que gira com o dedo (Milky e Salted Caramel) ----------
+// faces em img/giro/<sabor>-{frente,costas,lado-logo,lado-texto}.webp — frente/costas 400×620, laterais 190×620
+const GIRO_PROP = {w:400, d:190, h:620};
+function giroHTML(p){
+  const f = n => `img/giro/${p.giro}-${n}.webp`;
+  return `<div class="giro" role="img" aria-label="${esc(p.nome)}: segure e arraste pra girar a embalagem">
+    <div class="giro-cena"><div class="giro-caixa">
+      <img class="giro-face frente" src="${f("frente")}" alt="" draggable="false">
+      <img class="giro-face dir" src="${f("lado-logo")}" alt="" draggable="false">
+      <img class="giro-face costas" src="${f("costas")}" alt="" draggable="false">
+      <img class="giro-face esq" src="${f("lado-texto")}" alt="" draggable="false">
+    </div></div>
+    <span class="giro-dica">↔ Segure e arraste pra girar</span>
+  </div>`;
+}
+function montaGiro(el){
+  const caixa = el.querySelector(".giro-caixa"), faces = [...el.querySelectorAll(".giro-face")];
+  const normais = [0, 90, 180, 270]; // frente, direita, costas, esquerda
+  let ang = 0, vel = 0, raf = 0;
+  function tamanho(){
+    const r = el.getBoundingClientRect();
+    const w = Math.min(r.width * .5, (r.height - 40) * GIRO_PROP.w / GIRO_PROP.h);
+    el.style.setProperty("--w", w + "px");
+    el.style.setProperty("--d", w * GIRO_PROP.d / GIRO_PROP.w + "px");
+    el.style.setProperty("--h", w * GIRO_PROP.h / GIRO_PROP.w + "px");
+  }
+  function desenha(){
+    caixa.style.transform = `rotateY(${ang}deg)`;
+    // luz: a face virada pra frente fica mais clara
+    faces.forEach((f, i) => { const c = Math.cos((normais[i] + ang) * Math.PI / 180); f.style.filter = `brightness(${(.72 + .28 * Math.max(0, c)).toFixed(3)})`; });
+  }
+  tamanho(); desenha();
+  new ResizeObserver(tamanho).observe(el);
+  // uma volta de apresentação quando a página abre
+  if (!fxReduz) {
+    const t0 = performance.now(), fim = -18, dur = 1700;
+    const passo = t => { const p = Math.min(1, (t - t0) / dur), k = 1 - Math.pow(1 - p, 3); ang = (-360 + fim) * k; desenha(); if (p < 1 && !el._mexeu) raf = requestAnimationFrame(passo); };
+    setTimeout(() => { if (!el._mexeu) raf = requestAnimationFrame(passo); }, 350);
+  } else { ang = -18; desenha(); }
+  let x0 = null, a0 = 0, ult = 0, tUlt = 0;
+  el.addEventListener("pointerdown", e => {
+    el._mexeu = true; cancelAnimationFrame(raf); vel = 0;
+    x0 = e.clientX; a0 = ang; ult = e.clientX; tUlt = performance.now();
+    el.classList.add("girando");
+    try { el.setPointerCapture(e.pointerId); } catch (err) {}
+  });
+  el.addEventListener("pointermove", e => {
+    if (x0 === null) return;
+    const agora = performance.now();
+    vel = Math.max(-22, Math.min(22, (e.clientX - ult) / Math.max(8, agora - tUlt) * 16)); ult = e.clientX; tUlt = agora;
+    ang = a0 + (e.clientX - x0) * .55; desenha();
+  });
+  const solta = () => {
+    if (x0 === null) return;
+    x0 = null; el.classList.remove("girando");
+    // continua girando um pouquinho e para devagar
+    const inercia = () => { vel *= .94; ang += vel * .55; desenha(); if (Math.abs(vel) > .05) raf = requestAnimationFrame(inercia); };
+    if (!fxReduz) raf = requestAnimationFrame(inercia);
+  };
+  el.addEventListener("pointerup", solta);
+  el.addEventListener("pointercancel", solta);
+}
+
 // ---------- página do produto / montar kit (como na MadNutz) ----------
 const pag = $("#pag");
 let prodAtual = null, escolha = {}, qtdAvulso = 1;
@@ -353,11 +416,11 @@ const totalEscolhido = () => Object.values(escolha).reduce((t, n) => t + n, 0);
 function abrirPagina(id){
   const p = porId[id]; if (!p) return false;
   prodAtual = p; escolha = {}; qtdAvulso = 1;
-  const f = $("#pag-foto");
-  f.classList.remove("foto");
-  if (p.reserva) f.dataset.reserva = p.reserva; else delete f.dataset.reserva;
-  $("#pag-foto-caixa").classList.toggle("recorte", !!p.recorte);
-  f.src = p.foto; f.alt = p.nome;
+  const caixaFoto = $("#pag-foto-caixa");
+  caixaFoto.classList.toggle("recorte", !!p.recorte);
+  caixaFoto.classList.toggle("com-giro", !!p.giro);
+  caixaFoto.innerHTML = p.giro ? giroHTML(p) : imgDe(p, 'id="pag-foto"');
+  if (p.giro) montaGiro(caixaFoto.querySelector(".giro"));
   $("#pag-nome").textContent = p.nome;
   const selo = p.de ? `Economize ${R(p.de - p.preco)}` : (p.selo || "");
   $("#pag-selo").textContent = selo; $("#pag-selo").hidden = !selo;

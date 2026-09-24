@@ -223,6 +223,22 @@ body.em-produto main{display:none}
 .pag-foto img{width:100%;height:100%;object-fit:cover}
 .pag-foto.recorte{background:radial-gradient(ellipse 60% 50% at 30% 30%,rgba(255,255,255,.7),transparent 70%),linear-gradient(160deg,var(--azul-claro),var(--azul))}
 .pag-foto.recorte img{object-fit:contain;padding:22px}
+/* caixa 3D */
+.pag-foto.com-giro{aspect-ratio:auto;height:clamp(380px,48vw,520px);border-color:var(--azul-forte)}
+.giro{position:relative;width:100%;height:100%;cursor:grab;touch-action:pan-y;user-select:none;-webkit-user-select:none;display:flex;align-items:center;justify-content:center}
+.giro.girando{cursor:grabbing}
+.giro-cena{perspective:1300px;width:var(--w);height:var(--h);margin-top:-18px}
+.giro-caixa{position:relative;width:var(--w);height:var(--h);transform-style:preserve-3d;will-change:transform}
+.pag-foto.recorte .giro-face,.giro-face{position:absolute;top:0;height:var(--h);padding:0;object-fit:fill;backface-visibility:hidden;-webkit-backface-visibility:hidden;pointer-events:none}
+.giro-face.frente,.giro-face.costas{left:0;width:var(--w)}
+.giro-face.dir,.giro-face.esq{left:calc((var(--w) - var(--d)) / 2);width:var(--d)}
+.giro-face.frente{transform:translateZ(calc(var(--d) / 2))}
+.giro-face.costas{transform:rotateY(180deg) translateZ(calc(var(--d) / 2))}
+.giro-face.dir{transform:rotateY(90deg) translateZ(calc(var(--w) / 2))}
+.giro-face.esq{transform:rotateY(-90deg) translateZ(calc(var(--w) / 2))}
+.giro::after{content:"";position:absolute;left:50%;bottom:38px;width:calc(var(--w) * 1.1);height:18px;transform:translateX(-50%);background:radial-gradient(closest-side,rgba(40,90,130,.35),transparent);pointer-events:none}
+.giro-dica{position:absolute;left:50%;bottom:12px;transform:translateX(-50%);background:rgba(30,7,18,.78);color:#fff;font-size:12px;font-weight:800;padding:6px 14px;border-radius:999px;white-space:nowrap;pointer-events:none;transition:opacity .4s}
+.giro.girando .giro-dica{opacity:0}
 .pag-texto{grid-area:texto}
 .pag-texto p{font-size:16px;line-height:1.65;color:rgba(255,255,255,.9)}
 .pag-texto p+p{margin-top:12px}
